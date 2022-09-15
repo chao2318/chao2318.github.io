@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="一、Java部分1 操作系统相关1 什么是操作系统？（From wikipedia）操作系统是一组主管并控制计算机操作、运用和运行硬件、软件资源和提供公共服务来组织用户交互的相互关联的系统软件程序，同时也是计算机系统的内核与基石。操作系统需要处理如管理与配置内存、决定系统资源供需的优先次序、控制输入与输出设备、操作网络与管理文件系统等基本事务。操作系统也提供一个让用户与系统交互的操作界面。 （自我">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Android面试题">
+<meta property="og:url" content="http://example.com/hide/Android%E9%9D%A2%E8%AF%95%E9%A2%98.html">
+<meta property="og:site_name" content="Great Again">
+<meta property="og:description" content="一、Java部分1 操作系统相关1 什么是操作系统？（From wikipedia）操作系统是一组主管并控制计算机操作、运用和运行硬件、软件资源和提供公共服务来组织用户交互的相互关联的系统软件程序，同时也是计算机系统的内核与基石。操作系统需要处理如管理与配置内存、决定系统资源供需的优先次序、控制输入与输出设备、操作网络与管理文件系统等基本事务。操作系统也提供一个让用户与系统交互的操作界面。 （自我">
+<meta property="og:locale">
+<meta property="og:image" content="https://chao2318.cdn.bcebos.com/typora/20220115093530_008i3skNly1gye1dzm9qdj30hm03c3yi.jpg">
+<meta property="og:image" content="https://chao2318.cdn.bcebos.com/typora/20220115093535_image-20220114174314011.png">
+<meta property="og:image" content="https://chao2318.cdn.bcebos.com/typora/20220117185015_image-20220117185015320.png">
+<meta property="og:image" content="https://chao2318.cdn.bcebos.com/typora/20220119143528_1223046-20190722214114154-276488899.png">
+<meta property="og:image" content="https://chao2318.cdn.bcebos.com/typora/20220207110432_webp">
+<meta property="article:published_time" content="2022-01-12T09:19:26.000Z">
+<meta property="article:modified_time" content="2022-07-01T07:16:04.475Z">
+<meta property="article:author" content="大给给">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chao2318.cdn.bcebos.com/typora/20220115093530_008i3skNly1gye1dzm9qdj30hm03c3yi.jpg">
+
+<link rel="canonical" href="http://example.com/hide/Android%E9%9D%A2%E8%AF%95%E9%A2%98">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Android面试题 | Great Again
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Great Again</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-Hans">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Android面试题
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="一、Java部分"><a href="#一、Java部分" class="headerlink" title="一、Java部分"></a><strong>一、Java部分</strong></h1><h2 id="1-操作系统相关"><a href="#1-操作系统相关" class="headerlink" title="1 操作系统相关"></a>1 操作系统相关</h2><h3 id="1-什么是操作系统？"><a href="#1-什么是操作系统？" class="headerlink" title="1 什么是操作系统？"></a><strong>1 什么是操作系统？</strong></h3><p>（From wikipedia）操作系统是一组主管并控制计算机操作、运用和运行硬件、软件资源和提供公共服务来组织用户交互的相互关联的系统软件程序，同时也是计算机系统的内核与基石。操作系统需要处理如管理与配置内存、决定系统资源供需的优先次序、控制输入与输出设备、操作网络与管理文件系统等基本事务。操作系统也提供一个让用户与系统交互的操作界面。</p>
+<p>（自我总结）操作系统通过进程管理、存储管理、设备管理、文件管理、作业管理相关功能，来让用户较为友好的使用计算机。</p>
+<p>进程管理：其工作主要是进程调度，在单用户单任务的情况下，处理器仅为一个用户的一个任务所独占， 进程管理的工作十分简单。但在多道程序或多用户的情况 下，组织多个作业或任务时，就要解决处理器的调度、 分配和回收等问题 。</p>
+<p>存储管理：分为几种功能：存储分配、存储共享、存储保护 、存储扩张。</p>
+<p>设备管理：分有以下功能：设备分配、设备传输控制 、设备独立性。</p>
+<p>文件管理：文件存储空间的管理、目录管理 、文件操作管理、文件保护。</p>
+<p>作业管理：负责处理用户提交的任何要求</p>
+<h3 id="2-什么是线程，什么是进程？"><a href="#2-什么是线程，什么是进程？" class="headerlink" title="2 什么是线程，什么是进程？"></a><strong>2 什么是线程，什么是进程？</strong></h3><p>根本区别：进程是操作系统资源分配的基本单位，而线程是处理器任务调度和执行的基本单位</p>
+<p>资源开销：每个进程都有独立的代码和数据空间（程序上下文），程序之间的切换会有较大的开销；线程可以看做轻量级的进程，同一类线程共享代码和数据空间，每个线程都有自己独立的运行栈和程序计数器（PC），线程之间切换的开销小。</p>
+<h2 id="2-JDK-amp-JVM-amp-JRE"><a href="#2-JDK-amp-JVM-amp-JRE" class="headerlink" title="2 JDK&amp;JVM&amp;JRE"></a>2 JDK&amp;JVM&amp;JRE</h2><h3 id="1-JDK-amp-JVM-amp-JRE分别是什么以及它们的区别？"><a href="#1-JDK-amp-JVM-amp-JRE分别是什么以及它们的区别？" class="headerlink" title="1 JDK &amp; JVM &amp; JRE分别是什么以及它们的区别？"></a><strong>1 JDK &amp; JVM &amp; JRE分别是什么以及它们的区别？</strong></h3><p>JDK全称为Java Development Kit，JVM全称为Java Vitrual Machine，JRE全程为Java Runtime Environment；</p>
+<p>JDK为JAVA开发工具套件，JVM为Java虚拟机，而JRE为Java运行时环境;</p>
+<p>JRE = JVM + 核心类库</p>
+<p>JDK = JRE + Java开发工具(java、javac)等；</p>
+<h3 id="2-解释一下为什么Java可以跨平台？"><a href="#2-解释一下为什么Java可以跨平台？" class="headerlink" title="2 解释一下为什么Java可以跨平台？"></a><strong>2 解释一下为什么Java可以跨平台？</strong></h3><p>因为Java程序编译之后的代码不是能被硬件系统直接运行字节码。然后不同的硬件平台上都安装有不同的Java虚拟机(JVM)，由JVM来把字节码再“翻译”成所对应的硬件平台能够执行机器码，每个系统平台都是有自己的虚拟机（JVM），所以JAVA语言能跨平台；</p>
+<p>编译器是先把java文件编译成二进制字节码的class文件，jvm就解释执行class文件。 就是因为java是运行在jvm上的，所以它的代码就能不经修改，就能在不同平台的jvm上运行(在UNIX用UNIX的jvm,在linux上用linux的jvm，在windows上用windows的jvm） ；</p>
+<h2 id="3-面向过程-amp-面向对象"><a href="#3-面向过程-amp-面向对象" class="headerlink" title="3 面向过程 &amp; 面向对象"></a>3 面向过程 &amp; 面向对象</h2><h3 id="1-什么是面向过程-amp-什么是面向对象-amp-区别？"><a href="#1-什么是面向过程-amp-什么是面向对象-amp-区别？" class="headerlink" title="1 什么是面向过程 &amp; 什么是面向对象 &amp; 区别？"></a>1 什么是面向过程 &amp; 什么是面向对象 &amp; 区别？</h3><p><strong>面向过程</strong>：一种以过程为中心的编程思想，它首先分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，在使用时依次调用，是一种基础的顺序的思维方式。面向过程开发方式是对计算机底层结构的一层抽象，它将程序分为数据和操纵数据的操作两部分，其核心问题是数据结构和算法的开发和优化。常见的支持面向过程的编程语言有 C语言、COBOL 语言等。</p>
+<p><strong>面向对象</strong>：按人们认识客观世界的系统思维方式，采用基于对象（实体）的概念建立模型，模拟客观世界分析、设计、实现软件的编程思想，通过面向对象的理念使计算机软件系统能与现实世界中的系统一一对应。</p>
+<p><strong>区别（自我总结）</strong>：面向对象其实就是通过抽象、封装、集成与多态来模拟显示世界的分工；面向过程则为用模块的层次结构概括模块或模块间的关系与功能，把客观世界的问题抽象成计算机可以处理的过程</p>
+<h3 id="2-给我说说Java面向对象的特征以及讲讲你代码中凸显这些特征的经验。"><a href="#2-给我说说Java面向对象的特征以及讲讲你代码中凸显这些特征的经验。" class="headerlink" title="2 给我说说Java面向对象的特征以及讲讲你代码中凸显这些特征的经验。"></a>2 给我说说Java面向对象的特征以及讲讲你代码中凸显这些特征的经验。</h3><h3 id="3-什么是重载-amp-什么是重写-amp-区别。"><a href="#3-什么是重载-amp-什么是重写-amp-区别。" class="headerlink" title="3 什么是重载 &amp; 什么是重写 &amp; 区别。"></a>3 什么是重载 &amp; 什么是重写 &amp; 区别。</h3><p>重写：子类对父类的方法进行overwrite</p>
+<p>重载：方法名相同，参数不同产生的不同方法调用</p>
+<h3 id="4-谈谈你对this和super的认识。"><a href="#4-谈谈你对this和super的认识。" class="headerlink" title="4 谈谈你对this和super的认识。"></a>4 谈谈你对this和super的认识。</h3><p>1.this是指向自己的指针，super指向超类的一个指针；</p>
+<p>2.this的作用：①当前类的直接引用；②方法处理过程中形参和成员变量的区分使用；③构造函数的调用</p>
+<p>super的作用：①父类的直接引用；②子类和父类同名的成员变量和方法名的区分；③构造函数的调用</p>
+<p>以上为总结网上各种粘来粘去那个最火的文章的总结；以下为我的一些思考：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Country</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        name = <span class="string">&quot;China&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> <span class="keyword">extends</span> <span class="title">Country</span></span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        name = <span class="string">&quot;Shanghai&quot;</span>;</span><br><span class="line">        <span class="keyword">super</span>.value();      </span><br><span class="line">        System.out.println(name);</span><br><span class="line">        System.out.println(<span class="keyword">super</span>.name);</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyClass c=<span class="keyword">new</span> MyClass();</span><br><span class="line">        c.value();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看下这段代码，首先构造了MyClass类，此类为Country的子类，那么调用c.value()的时候，调用的是MyClass的value方法。value的方法首先对name进行了赋值，赋值后，调用super.value()进行父类的name属性进行赋值，然后就对当前对象name和父类的name进行了输出。这里有几个思考点：</p>
+<p>①当前MyClass对象中，对于子类和父类中同时存在的name是如何处理的？</p>
+<p>②super调用value方法和name成员变量的时候，调用的到底是什么？</p>
+<p>（这里可能涉及到java对象模型的相关知识，本人写OC出身，可能理解并不深刻）</p>
+<p>经过实验后得到了一些答案：</p>
+<img src="https://chao2318.cdn.bcebos.com/typora/20220115093530_008i3skNly1gye1dzm9qdj30hm03c3yi.jpg" alt="image-20220114171617792" style="zoom:50%;" />
+
+<p>从断点看到，super和this指向了同一个对象地址，那对于同一个对象，子类和父类的name属性的分布是怎么样的呢？</p>
+<img src="https://chao2318.cdn.bcebos.com/typora/20220115093535_image-20220114174314011.png" alt="image-20220114174314011" style="zoom:50%;" />
+
+<p>从这里可以看到super.name和this.name指向的内存地址不相同，这里可以认为在内存中是完全两个对象。</p>
+<p>综合以上分析，this更像是一个指向对象自己的指针，而super为区分子类和父类调用的一个关键字。（PS：需要后面需要好好研究下Java的对象模型）</p>
+<h3 id="5-接口和抽象类的区别。"><a href="#5-接口和抽象类的区别。" class="headerlink" title="5 接口和抽象类的区别。"></a>5 接口和抽象类的区别。</h3><p>接口的设计目的，是对类的行为进行约束（更准确的说是一种“有”约束，因为接口不能规定类不可以有什么行为），也就是提供一种机制，可以强制要求不同的类具有相同的行为。它只约束了行为的有无，但不对如何实现行为进行限制。</p>
+<p>而抽象类的设计目的，是代码复用。当不同的类具有某些相同的行为(记为行为集合A)，且其中一部分行为的实现方式一致时（A的非真子集，记为B），可以让这些类都派生于一个抽象类。在这个抽象类中实现了B，避免让所有的子类来实现B，这就达到了代码复用的目的。而A减B的部分，留给各个子类自己实现。正是因为A-B在这里没有实现，所以抽象类不允许实例化出来（否则当调用到A-B时，无法执行）。</p>
+<h3 id="6-静态属性和静态方法能被继承吗？静态方法又是否能被重写呢？"><a href="#6-静态属性和静态方法能被继承吗？静态方法又是否能被重写呢？" class="headerlink" title="6 静态属性和静态方法能被继承吗？静态方法又是否能被重写呢？"></a>6 静态属性和静态方法能被继承吗？静态方法又是否能被重写呢？</h3><p>java中静态属性和静态方法可以被继承，但是没有被重写(overwrite)而是被隐藏.(这里又涉及到java的对象模型了)</p>
+<h3 id="7-给我说说权限修饰符特性。"><a href="#7-给我说说权限修饰符特性。" class="headerlink" title="7 给我说说权限修饰符特性。"></a>7 给我说说权限修饰符特性。</h3><p>Public:公有，所有人可以访问</p>
+<p>Private:私有，只有自己可以访问</p>
+<p>Protect:：保护，继承者可以访问</p>
+<h3 id="8-给我谈谈Java中的内部类。"><a href="#8-给我谈谈Java中的内部类。" class="headerlink" title="8 给我谈谈Java中的内部类。"></a>8 给我谈谈Java中的内部类。</h3><p>Java的四种内部类：①成员内部类；②局部内部类；③匿名内部类；④静态内部类；</p>
+<p>下面上一段代码，分别显示以下四种类的创建方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseClass</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnListener</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(String text)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MemberInnerClass</span> </span>&#123; <span class="comment">//成员内部类声明</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BaseClass <span class="title">testPartialClass</span><span class="params">()</span> </span>&#123; <span class="comment">//局部内部类声明+使用</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">PartialClass</span> <span class="keyword">extends</span> <span class="title">BaseClass</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">new</span> PartialClass();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticInnerClass</span> </span>&#123; <span class="comment">//静态内部类声明</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">StaticInnerClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnListener</span><span class="params">(OnListener l)</span> </span>&#123; <span class="comment">//匿名内部类接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MainClass mainClass = <span class="keyword">new</span> MainClass();</span><br><span class="line">        <span class="comment">//成员内部类使用</span></span><br><span class="line">        MainClass.MemberInnerClass memberInnerClass = mainClass.<span class="function">new <span class="title">MemberInnerClass</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="comment">//静态内部类使用</span></span><br><span class="line">        MainClass.StaticInnerClass staticInnerClass = <span class="keyword">new</span> MainClass.StaticInnerClass();</span><br><span class="line">        <span class="comment">//匿名内部类使用</span></span><br><span class="line">        mainClass.setOnListener(<span class="keyword">new</span> MainClass.OnListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(String text)</span> </span>&#123;</span><br><span class="line">                System.out.println(text);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>四种类分别的使用方法请自行食用（PS：了解就好，建议项目过程中这些特性酌情使用。匿名内部类在回调的场景使用较多，其他的方式遇到合适的场景再更新）</p>
+<p>几个问题</p>
+<p>①为什么成员内部类可以调用外部对象？</p>
+<p>​    通过字节码可以看到，成员内部类有指向外部类对象的this指针;</p>
+<p>②为什么局部内部类和匿名内部类只能访问局部final变量？</p>
+<p>​    通过字节码可以看到，这两个内部类会通过压栈或者构造器传参的方式复制外部类的成员变量，故实际上操作对象不一致，若不用final可导致出现一致性问题;</p>
+<h3 id="9-闭包和内部类的区别？"><a href="#9-闭包和内部类的区别？" class="headerlink" title="9 闭包和内部类的区别？"></a>9 闭包和内部类的区别？</h3><h3 id="10-Java多态的实现机制是什么？（细看）"><a href="#10-Java多态的实现机制是什么？（细看）" class="headerlink" title="10 Java多态的实现机制是什么？（细看）"></a>10 Java多态的实现机制是什么？（细看）</h3><ol>
+<li><p>多态允许具体访问时实现方法的动态绑定。Java对于动态绑定的实现主要依赖于方法表。</p>
+</li>
+<li><p>JVM 的方法调用指令有四个，分别是 invokestatic，invokespecial，invokesvirtual 和 invokeinterface。前两个是静态绑定，后两个是动态绑定的。多态就是通过后两个指令实现的。</p>
+</li>
+</ol>
+<h3 id="11-谈谈你对对象生命周期的认识？"><a href="#11-谈谈你对对象生命周期的认识？" class="headerlink" title="11 谈谈你对对象生命周期的认识？"></a>11 谈谈你对对象生命周期的认识？</h3><p>Java对象声明周期分别为：①创建阶段；②应用阶段；③不可见阶段；④不可达阶段；⑤收集阶段；⑥终结阶段；⑦占用再分配阶段；</p>
+<p>重点说明：</p>
+<p>a.创建阶段：①分配存储空间；②开始构造对象；③从超类到子类Static成员初始化；④从超类到子类成员变量初始化，递归调用超类构造方法，然后再进行子类构造方法调用；</p>
+<p>b.应用阶段：程序正常运行阶段</p>
+<p>c.不可见阶段：虽然强引用会存在，但是已超出程序作用域，程序上不再需要使用该强引用；</p>
+<p>d.不可达阶段：该对象已经不存在任何强引用，可以准备被GC</p>
+<p>e.收集阶段：准备GC阶段，调用即将被收集对象的finalize()方法</p>
+<p>f.终结阶段：调用finalize后仍然不可达，进行对象空间的回收；</p>
+<p>g.占用再分配阶段：对象占用空间的再分配</p>
+<h3 id="12-static关键字的作用？"><a href="#12-static关键字的作用？" class="headerlink" title="12 static关键字的作用？"></a>12 static关键字的作用？</h3><p>①static方法：静态方法，不依赖于类对象，所以用Class.xxx这种形式访问，因为不依赖于类对象，所以也不允许访问类的成员变量和方法；</p>
+<p>②static变量：静态变量被所有对象共享，在内存中只有一个副本，它当且仅当在类初次加载时会被初始化；</p>
+<p>③static代码块：用来形成静态代码块以优化程序性能。static块可以置于类中的任何地方，类中可以有多个static块。在类初次被加载的时候，会按照static块的顺序来执行每个static块，并且只会执行一次；</p>
+<h3 id="13-final关键字的作用"><a href="#13-final关键字的作用" class="headerlink" title="13 final关键字的作用?"></a>13 final关键字的作用?</h3><p>①final用在类的时候，类不可被继承；</p>
+<p>②final用在方法的时候，方法不可以被重写；（早期final用在方法时还有个含义，就是可以改为内嵌调用，个人理解应该相当于c/c++的内联）</p>
+<p>③final用在变量的时候，变量不可被修改；</p>
+<p>下面这段代码的输出是true、false</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span>  </span>&#123; </span><br><span class="line">        String a = <span class="string">&quot;hello2&quot;</span>;   </span><br><span class="line">        <span class="keyword">final</span> String b = <span class="string">&quot;hello&quot;</span>; </span><br><span class="line">        String d = <span class="string">&quot;hello&quot;</span>; </span><br><span class="line">        String c = b + <span class="number">2</span>;   </span><br><span class="line">        String e = d + <span class="number">2</span>; </span><br><span class="line">        System.out.println((a == c)); </span><br><span class="line">        System.out.println((a == e)); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>所以拷贝来拷贝去的博客都是这么解释的：当final变量是基本数据类型以及String类型时，如果在编译期间能知道它的确切值，则编译器会把它当做编译期常量使用。也就是说在用到该final变量的地方，相当于直接访问的这个常量，不需要在运行时确定。这种和C语言中的宏替换有点像。因此在上面的一段代码中，由于变量b被final修饰，因此会被当做编译器常量，所以在使用到b的地方会直接将变量b 替换为它的值。而对于变量d的访问却需要在运行时通过链接来进行。</p>
+<p>我认为上面这段解释欠妥，应该从内存分配角度出发讲解更为合理，但是还没研究明白，算是一个TODO；</p>
+<h2 id="4-八大基本数据类型-amp-引用类型"><a href="#4-八大基本数据类型-amp-引用类型" class="headerlink" title="4 八大基本数据类型&amp;引用类型"></a>4 八大基本数据类型&amp;引用类型</h2><h3 id="1-说说Java中的八大基本类型-amp-内存中占有的字节-amp-什么是引用类型？"><a href="#1-说说Java中的八大基本类型-amp-内存中占有的字节-amp-什么是引用类型？" class="headerlink" title="1 说说Java中的八大基本类型 &amp; 内存中占有的字节 &amp; 什么是引用类型？"></a>1 说说Java中的八大基本类型 &amp; 内存中占有的字节 &amp; 什么是引用类型？</h3><p>①Java中的8大基本类型</p>
+<table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th>默认值</th>
+<th>占用字节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">boolean</td>
+<td>false</td>
+<td>1（这里有争议）</td>
+</tr>
+<tr>
+<td align="left">byte</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td align="left">short</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td align="left">int</td>
+<td>0</td>
+<td>4</td>
+</tr>
+<tr>
+<td align="left">long</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td align="left">float</td>
+<td>0.0</td>
+<td>4</td>
+</tr>
+<tr>
+<td align="left">double</td>
+<td>0.0</td>
+<td>8</td>
+</tr>
+<tr>
+<td align="left">char</td>
+<td>\u0000</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p>②引用类型</p>
+<p>引用类型指向一个对象,不是原始值,指向对象的变量是引用变量。 在java里面除去基本数据类型的其它类型都是引用数据类型,自己定义的class类都是引用类型；</p>
+<h3 id="2-什么是拆箱-amp-装箱，能给我举栗子吗？"><a href="#2-什么是拆箱-amp-装箱，能给我举栗子吗？" class="headerlink" title="2 什么是拆箱 &amp; 装箱，能给我举栗子吗？"></a>2 什么是拆箱 &amp; 装箱，能给我举栗子吗？</h3><table>
+<thead>
+<tr>
+<th>char</th>
+<th>Character</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+</tbody></table>
+<p>为啥要有这种设计？简单思考下：</p>
+<p>1.解决基本类型在调用过程中值传递带来的copy问题；（值传递在函数中操作的是副本，引用才能操作对象）</p>
+<p>2.java很多工具类和集合（ArrayList和Vector）都是对对象进行操作，基本类型传递需要编写额外代码；</p>
+<p>3.多线程需要使用对象操作；</p>
+<h2 id="5-数组"><a href="#5-数组" class="headerlink" title="5 数组"></a>5 数组</h2><h3 id="1-能说说多维数组在内存上是怎么存储的吗？"><a href="#1-能说说多维数组在内存上是怎么存储的吗？" class="headerlink" title="1 能说说多维数组在内存上是怎么存储的吗？"></a>1 能说说多维数组在内存上是怎么存储的吗？</h3><p>直接上图</p>
+<img src="https://chao2318.cdn.bcebos.com/typora/20220117185015_image-20220117185015320.png" alt="image-20220117185015320" style="zoom:50%;" />
+
+<h3 id="2-你对数组二次封装过吗？说说封装了什么-TODO"><a href="#2-你对数组二次封装过吗？说说封装了什么-TODO" class="headerlink" title="2 你对数组二次封装过吗？说说封装了什么(TODO)"></a>2 你对数组二次封装过吗？说说封装了什么(TODO)</h3><h2 id="6-Java异常"><a href="#6-Java异常" class="headerlink" title="6 Java异常"></a>6 Java异常</h2><h3 id="1-说说Java异常体系主要用来干什么的-amp-异常体系？"><a href="#1-说说Java异常体系主要用来干什么的-amp-异常体系？" class="headerlink" title="1 说说Java异常体系主要用来干什么的 &amp; 异常体系？"></a>1 说说Java异常体系主要用来干什么的 &amp; 异常体系？</h3><p>Java中某些错误是可以修复的，而某些错误是不能修复的，例如程序中要访问的文件找不到，那么你可以定位到此错误时，创建新的文件不就ok了吗，再比如OOM,这种错误是无法解决的。因此Java中异常体系解决了定位错误以及解决错误的一种机制。</p>
+<p><strong>异常体系：</strong></p>
+<p>Throwable为所有异常的父类；</p>
+<p>Error和Exception分别继承自Throwable；</p>
+<p>虚拟机错误（VirturalMachineError）和其他Error继承自Throwable；</p>
+<p>运行时异常（RuntimeException）和其他Exception继承自Exception；</p>
+<p><strong>异常处理原则：</strong></p>
+<p>除非你能解决（或必须要处理）这个异常，否则不要捕获它，如果打算记录错误消息，那么别忘了把它再抛出去。</p>
+<h3 id="2-Error和Exception的区别？"><a href="#2-Error和Exception的区别？" class="headerlink" title="2 Error和Exception的区别？"></a>2 Error和Exception的区别？</h3><p><strong>Exception：</strong></p>
+<p>1.可以是可被控制（checked）或者不可控制（unchecked）；</p>
+<p>2.表示一个由程序员导致的错误；</p>
+<p>3.应该在应用程序级被处理；</p>
+<p><strong>Error：</strong></p>
+<p>1.总是不可控制的（unchecked）；</p>
+<p>2.经常用来表示系统错误或者底层资源错误；</p>
+<p>3.如果可能的话，应该在系统级被捕捉；</p>
+<h3 id="3-说说运行时异常和非运行时异常的区别？"><a href="#3-说说运行时异常和非运行时异常的区别？" class="headerlink" title="3 说说运行时异常和非运行时异常的区别？"></a>3 说说运行时异常和非运行时异常的区别？</h3><p><strong>checked异常和unchecked异常：</strong></p>
+<p><strong>Exception的直接子类</strong>：编译时异常（要求程序员在编写程序阶段必须预先对这些异常进行处理，不处理，编译不通过）<br>编译时异常也被称为：受检异常（CheckedException）、受控异常。</p>
+<p><strong>RuntimeException</strong>：运行时异常（在编写程序阶段程序员可以处理，也可以不处理）。<br>运行时异常也被称为：未受检异常（UnCheckedException）、非受控异常。</p>
+<h3 id="4-如何自定义一个异常？"><a href="#4-如何自定义一个异常？" class="headerlink" title="4 如何自定义一个异常？"></a>4 如何自定义一个异常？</h3><p>继承Exception，并使用构造方法构造Message，干就完了，没理解这道题想考察啥。</p>
+<h3 id="5-throw和throws-的区别？"><a href="#5-throw和throws-的区别？" class="headerlink" title="5 throw和throws 的区别？"></a>5 throw和throws 的区别？</h3><p>throw是抛异常，throws是在方法体后面声明异常，告诉调用方法的人这个方法会抛出那种异常</p>
+<h3 id="6-try-catch-finally-可以没有finally吗？"><a href="#6-try-catch-finally-可以没有finally吗？" class="headerlink" title="6 try{}catch{}finally{}可以没有finally吗？"></a>6 try{}catch{}finally{}可以没有finally吗？</h3><p>可以啊，try-catch、try-finally、try-catch、finally都被允许</p>
+<h3 id="7-finally语块有什么特点？"><a href="#7-finally语块有什么特点？" class="headerlink" title="7 finally语块有什么特点？"></a>7 finally语块有什么特点？</h3><p>被finally的语句，在除极端情况下（比如Crash）之类，都会执行，用于做一些兜底，比如申请了IO句柄，但是过程中出现错误，那在finally中可以释放这个句柄</p>
+<h3 id="8-return在try-catch-finally-中执行具有哪些规则？"><a href="#8-return在try-catch-finally-中执行具有哪些规则？" class="headerlink" title="8 return在try{}catch{}finally{}中执行具有哪些规则？"></a>8 return在try{}catch{}finally{}中执行具有哪些规则？</h3><p> try语句在返回前，将其他所有的操作执行完，保留好要返回的值，而后转入执行finally中的语句，而后分为以下三种情况：</p>
+<p>情况一：如果finally中有return语句，则会将try中的return语句”覆盖“掉，直接执行finally中的return语句，得到返回值，这样便无法得到try之前保留好的返回值。</p>
+<p>情况二：如果finally中没有return语句，也没有改变要返回值，则执行完finally中的语句后，会接着执行try中的return语句，返回之前保留的值。</p>
+<p>情况三：如果finally中没有return语句，但是改变了要返回的值，这里有点类似与引用传递和值传递的区别，分以下两种情况，：</p>
+<p>1）如果return的数据是基本数据类型或文本字符串，则在finally中对该基本数据的改变不起作用，try中的return语句依然会返回进入finally块之前保留的值。</p>
+<p>2）如果return的数据是引用数据类型，而在finally中对该引用数据类型的属性值的改变起作用，try中的return语句返回的就是在finally中改变后的该属性的值。</p>
+<h3 id="9-给我例举至少5个常见的运行时异常"><a href="#9-给我例举至少5个常见的运行时异常" class="headerlink" title="9 给我例举至少5个常见的运行时异常"></a>9 给我例举至少5个常见的运行时异常</h3><table>
+<thead>
+<tr>
+<th>异常类型</th>
+<th>异常名称</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>java.lang.NullPointerException</td>
+<td>空指针异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.ClassNotFoundException</td>
+<td>类不存在异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.ArrayIndexOutOfBoundsException</td>
+<td>数组越界异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.NoSuchMethodError</td>
+<td>方法不存在错误</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.IndexOutOfBoundsException</td>
+<td>索引越界异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.NumberFormatException</td>
+<td>数字格式异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.sql.SQLException</td>
+<td>Sql语句执行异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.IllegalArgumentException</td>
+<td>方法参数错误异常</td>
+<td></td>
+</tr>
+<tr>
+<td>java.lang.IllegalAccessException</td>
+<td>无访问权限异常</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="7-集合-容器"><a href="#7-集合-容器" class="headerlink" title="7 集合(容器)"></a>7 集合(容器)</h2><h3 id="1-说说Java中集合的框架？"><a href="#1-说说Java中集合的框架？" class="headerlink" title="1 说说Java中集合的框架？"></a>1 说说Java中集合的框架？</h3><h3 id="2-Collection-amp-Map区别"><a href="#2-Collection-amp-Map区别" class="headerlink" title="2 Collection &amp; Map区别"></a>2 Collection &amp; Map区别</h3><h3 id="3-谈谈你常用的集合-amp-它们底层的实现方式-amp-优缺点-amp-使用场景。"><a href="#3-谈谈你常用的集合-amp-它们底层的实现方式-amp-优缺点-amp-使用场景。" class="headerlink" title="3 谈谈你常用的集合 &amp; 它们底层的实现方式 &amp; 优缺点 &amp; 使用场景。"></a>3 谈谈你常用的集合 &amp; 它们底层的实现方式 &amp; 优缺点 &amp; 使用场景。</h3><h3 id="4-Map的遍历方式有哪些？"><a href="#4-Map的遍历方式有哪些？" class="headerlink" title="4 Map的遍历方式有哪些？"></a>4 Map的遍历方式有哪些？</h3><h3 id="5-给我说说ArrayList的扩容机制"><a href="#5-给我说说ArrayList的扩容机制" class="headerlink" title="5 给我说说ArrayList的扩容机制."></a>5 给我说说ArrayList的扩容机制.</h3><p>最开始是4、8，然后1.5倍增长，扩容的时候，先申请一个扩容后的地址空间，然后把扩容前的数据拷贝进去，然后把扩容前的数组缓存起来，用于下一次申请时候的空间复用；</p>
+<h3 id="6-什么是深拷贝-amp-浅拷贝-amp-如何深拷贝一个List集合"><a href="#6-什么是深拷贝-amp-浅拷贝-amp-如何深拷贝一个List集合" class="headerlink" title="6 什么是深拷贝 &amp; 浅拷贝 &amp; 如何深拷贝一个List集合."></a>6 什么是深拷贝 &amp; 浅拷贝 &amp; 如何深拷贝一个List集合.</h3><h3 id="7-Set是如何确保它的唯一性的。"><a href="#7-Set是如何确保它的唯一性的。" class="headerlink" title="7 Set是如何确保它的唯一性的。"></a>7 Set是如何确保它的唯一性的。</h3><h3 id="8-你觉得HashMap的元素顺序和什么有关？"><a href="#8-你觉得HashMap的元素顺序和什么有关？" class="headerlink" title="8 你觉得HashMap的元素顺序和什么有关？"></a>8 你觉得HashMap的元素顺序和什么有关？</h3><p>原理同见1.7.16，总结一下，顺序和两个事情有关，一个是存储顺序，另外就是哈希碰撞的次数；</p>
+<h3 id="9-Java中HashMap如何解决哈希碰撞的？"><a href="#9-Java中HashMap如何解决哈希碰撞的？" class="headerlink" title="9 Java中HashMap如何解决哈希碰撞的？"></a>9 Java中HashMap如何解决哈希碰撞的？</h3><p>见1.7.16</p>
+<h3 id="10-ConcurrentHashMap如何实现并发访问的？"><a href="#10-ConcurrentHashMap如何实现并发访问的？" class="headerlink" title="10 ConcurrentHashMap如何实现并发访问的？"></a>10 ConcurrentHashMap如何实现并发访问的？</h3><h3 id="11-谈谈Java集合中那些线程安全的集合-amp-实现原理。"><a href="#11-谈谈Java集合中那些线程安全的集合-amp-实现原理。" class="headerlink" title="11 谈谈Java集合中那些线程安全的集合 &amp; 实现原理。"></a>11 谈谈Java集合中那些线程安全的集合 &amp; 实现原理。</h3><h3 id="12-说说有哪些集合能加入null-哪些不能加入null-为什么？"><a href="#12-说说有哪些集合能加入null-哪些不能加入null-为什么？" class="headerlink" title="12 说说有哪些集合能加入null,哪些不能加入null,为什么？"></a>12 说说有哪些集合能加入null,哪些不能加入null,为什么？</h3><h3 id="13-说说LinkedHashMap原理。"><a href="#13-说说LinkedHashMap原理。" class="headerlink" title="13 说说LinkedHashMap原理。"></a>13 说说LinkedHashMap原理。</h3><h3 id="14-Collection-和-Collections的区别？"><a href="#14-Collection-和-Collections的区别？" class="headerlink" title="14 Collection 和 Collections的区别？"></a>14 Collection 和 Collections的区别？</h3><h3 id="15-比较一下ArrayMap和HashMap。"><a href="#15-比较一下ArrayMap和HashMap。" class="headerlink" title="15 比较一下ArrayMap和HashMap。"></a>15 比较一下ArrayMap和HashMap。</h3><p>ArrayMap通过数组实现；用于比较小规模数据场景，扩容比较简单</p>
+<p>Hashmap通过数组+链表实现；</p>
+<p>从以下几个方面比较：</p>
+<p>1.查找效率</p>
+<p>HashMap因为其根据hashcode的值直接算出index，所以其查找效率是随着数组长度增大而增加的。</p>
+<p>ArrayMap使用的是二分法查找，所以当数组长度每增加一倍时，就需要多进行一次判断，效率下降。</p>
+<p>所以对于Map数量比较大的情况下，推荐使用</p>
+<p>2.扩容数量</p>
+<p>HashMap初始值16个长度，每次扩容的时候，直接申请双倍的数组空间。</p>
+<p>ArrayMap每次扩容的时候，如果size长度大于8时申请size*1.5个长度，大于4小于8时申请8个，小于4时申请4个。</p>
+<p>这样比较ArrayMap其实是申请了更少的内存空间，但是扩容的频率会更高。因此，如果当数据量比较大的时候，还是使用HashMap更合适，因为其扩容的次数要比ArrayMap少很多。</p>
+<p>3.扩容效率</p>
+<p>HashMap每次扩容的时候时重新计算每个数组成员的位置，然后放到新的位置。</p>
+<p>ArrayMap则是直接使用System.arraycopy。</p>
+<p>所以效率上肯定是ArrayMap更占优势。</p>
+<p>这里需要说明一下，网上有一种传闻说因为ArrayMap使用System.arraycopy更省内存空间，这一点我真的没有看出来。arraycopy也是把老的数组的对象一个一个的赋给新的数组。当然效率上肯定arraycopy更高，因为是直接调用的c层的代码。</p>
+<p>4.内存耗费</p>
+<p>以ArrayMap采用了一种独特的方式，能够重复的利用因为数据扩容而遗留下来的数组空间，方便下一个ArrayMap的使用。而HashMap没有这种设计。</p>
+<p>由于ArrayMap只缓存了长度是4和8的时候，所以如果频繁的使用到Map，而且数据量都比较小的时候，ArrayMap无疑是相当的节省内存的。</p>
+<p>5.总结</p>
+<p>综上所述，数据量比较小，并且需要频繁的使用Map存储数据的时候，推荐使用ArrayMap。</p>
+<p>而数据量比较大的时候，则推荐使用HashMap。</p>
+<h3 id="16-说说HashMap的原理。"><a href="#16-说说HashMap的原理。" class="headerlink" title="16 说说HashMap的原理。"></a>16 说说HashMap的原理。</h3><p>Hash就是把任意长度的输入（又叫做预映射， pre-image），通过散列算法，变换成固定长度的输出，该输出就是散列值；</p>
+<p>那对于HashMap其实一般为KV结构，根据K的值去索引V；因为我们知道数组的索引效率是O(1)，那么使用Hash函数后生成的唯一值与数组下标对应起来后，KV结构的索引效率也能达到O(1)，即通过Hash算法后，先去数组取值，这个里面可以存着实际对象的指针或者引用，进而直接拿到实际对象；</p>
+<p>这里要提到的问题是再伟大的Hash方法也会有重复的时候，那设计Hashmap时候就要解决Hash碰撞问题，解决碰撞问题的常规三中思路如下：</p>
+<h5 id="①开放地址法-再散列法"><a href="#①开放地址法-再散列法" class="headerlink" title="①开放地址法(再散列法)"></a>①开放地址法(再散列法)</h5><p>开放地执法有一个公式:Hi=(H(key)+di) MOD m i=1,2,…,k(k&lt;=m-1) 其中，m为哈希表的表长。di 是产生冲突的时候的增量序列。如果di值可能为1,2,3,…m-1，称线性探测再散列。如果di取1，则每次冲突之后，向后移动1个位置.如果di取值可能为1,-1,2,-2,4,-4,9,-9,16,-16,…kk,-kk(k&lt;=m/2)，称二次探测再散列。如果di取值可能为伪随机数列。称伪随机探测再散列。</p>
+<h5 id="②再哈希法Rehash"><a href="#②再哈希法Rehash" class="headerlink" title="②再哈希法Rehash"></a>②再哈希法Rehash</h5><p>当发生冲突时，使用第二个、第三个、哈希函数计算地址，直到无冲突时。缺点：计算时间增加。比如上面第一次按照姓首字母进行哈希，如果产生冲突可以按照姓字母首字母第二位进行哈希，再冲突，第三位，直到不冲突为止.这种方法不易产生聚集，但增加了计算时间。</p>
+<h5 id="③链地址法（拉链法，Java中默认应该用的这个方法）"><a href="#③链地址法（拉链法，Java中默认应该用的这个方法）" class="headerlink" title="③链地址法（拉链法，Java中默认应该用的这个方法）"></a>③链地址法（拉链法，Java中默认应该用的这个方法）</h5><p>将所有关键字为同义词的记录存储在同一线性链表中.基本思想:将所有哈希地址为i的元素构成一个称为同义词链的单链表，并将单链表的头指针存在哈希表的第i个单元中，因而查找、插入和删除主要在同义词链中进行。链地址法适用于经常进行插入和删除的情况。对比JDK 1.7 hashMap的存储结构是不是很好理解。至于1.8之后链表长度大于6rehash 为树形结构不在此处讨论。</p>
+<h3 id="17-从源码角度剖析ArrayList-LinkedList"><a href="#17-从源码角度剖析ArrayList-LinkedList" class="headerlink" title="17 从源码角度剖析ArrayList,LinkedList"></a>17 从源码角度剖析ArrayList,LinkedList</h3><h3 id="18-你如何看代Java-8中HashMap引入红黑树？"><a href="#18-你如何看代Java-8中HashMap引入红黑树？" class="headerlink" title="18 你如何看代Java 8中HashMap引入红黑树？"></a>18 你如何看代Java 8中HashMap引入红黑树？</h3><h2 id="8-线程"><a href="#8-线程" class="headerlink" title="8 线程"></a>8 线程</h2><h3 id="1-什么是线程？能解决什么问题。"><a href="#1-什么是线程？能解决什么问题。" class="headerlink" title="1 什么是线程？能解决什么问题。"></a>1 什么是线程？能解决什么问题。</h3><h3 id="2-Java中创建线程的2种方式-amp-区别？"><a href="#2-Java中创建线程的2种方式-amp-区别？" class="headerlink" title="2 Java中创建线程的2种方式 &amp; 区别？"></a>2 Java中创建线程的2种方式 &amp; 区别？</h3><p>两种实现方式：</p>
+<p>1.创建Thread子类，实现run()方法，然后创建Thread子类对象，然后调用start方法；</p>
+<p>2.创建任务类，实现Runnable接口，通过Thread(Runnable a)的构造方法创建对象，然后调用start方法；</p>
+<p>两种方式区别是，第一种虽然是多线程，但是是通过类级别隔离，类的成员不好复用，而通过runnable形式的课共用一个对象，比较容易复用；</p>
+<h3 id="3-给我说说线程的生命周期。"><a href="#3-给我说说线程的生命周期。" class="headerlink" title="3 给我说说线程的生命周期。"></a>3 给我说说线程的生命周期。</h3><p><img src="https://chao2318.cdn.bcebos.com/typora/20220119143528_1223046-20190722214114154-276488899.png" alt="img"></p>
+<h3 id="4-线程死锁的原因-amp-举个栗子-amp-如何避免死锁。"><a href="#4-线程死锁的原因-amp-举个栗子-amp-如何避免死锁。" class="headerlink" title="4 线程死锁的原因 &amp; 举个栗子 &amp; 如何避免死锁。"></a>4 线程死锁的原因 &amp; 举个栗子 &amp; 如何避免死锁。</h3><p><strong>定义</strong>：多个线程争抢资源造成的僵局，无外力作用情况下无法推进，造成相互的资源等待的情况；</p>
+<p><strong>避免死锁方法</strong>：1.控制加锁顺序；2.增加超时时限；3.增加死锁检测；</p>
+<h3 id="5-Synchronized放在静态方法和非静态方法上的锁对象分别是什么？"><a href="#5-Synchronized放在静态方法和非静态方法上的锁对象分别是什么？" class="headerlink" title="5 Synchronized放在静态方法和非静态方法上的锁对象分别是什么？"></a>5 Synchronized放在静态方法和非静态方法上的锁对象分别是什么？</h3><p>Synchronized放在静态方法上时，锁对象为当前类对应的字节码对象class。 Synchronized放在非静态方法上时，锁对象是this指针指向的当前对象。</p>
+<h3 id="6-如何停止掉一个线程？"><a href="#6-如何停止掉一个线程？" class="headerlink" title="6 如何停止掉一个线程？"></a>6 如何停止掉一个线程？</h3><p>①使用退出标记位；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadFlag</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123; </span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> exit = <span class="keyword">false</span>; </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">while</span> (!exit); </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123; </span><br><span class="line">    ThreadFlag thread = <span class="keyword">new</span> ThreadFlag(); </span><br><span class="line">    thread.start(); </span><br><span class="line">    sleep(<span class="number">5000</span>); <span class="comment">// 主线程延迟5秒 </span></span><br><span class="line">    thread.exit = <span class="keyword">true</span>; <span class="comment">// 终止线程thread </span></span><br><span class="line">    thread.join(); </span><br><span class="line">    System.out.println(<span class="string">&quot;线程退出!&quot;</span>); </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>②使用stop方法；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.stop();</span><br></pre></td></tr></table></figure>
+
+<p>③使用interrupt方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.interrupt();</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-给我说说线程池的种类-amp-特点-amp-内部原理-amp-平时当中使用案例。"><a href="#7-给我说说线程池的种类-amp-特点-amp-内部原理-amp-平时当中使用案例。" class="headerlink" title="7 给我说说线程池的种类 &amp; 特点 &amp; 内部原理 &amp; 平时当中使用案例。"></a>7 给我说说线程池的种类 &amp; 特点 &amp; 内部原理 &amp; 平时当中使用案例。</h3><p><img src="https://chao2318.cdn.bcebos.com/typora/20220207110432_webp" alt="img"></p>
+<h3 id="8-给我谈谈你是如何保证线程数据安全问题的？"><a href="#8-给我谈谈你是如何保证线程数据安全问题的？" class="headerlink" title="8 给我谈谈你是如何保证线程数据安全问题的？"></a>8 给我谈谈你是如何保证线程数据安全问题的？</h3><h3 id="9-wait-和sleep-的区别？"><a href="#9-wait-和sleep-的区别？" class="headerlink" title="9 wait()和sleep()的区别？"></a>9 wait()和sleep()的区别？</h3><p>wait是object对象的东西，sleep是thread对象的东西</p>
+<p>在调用sleep()方法的过程中，线程不会释放对象锁。</p>
+<p>而当调用wait()方法的时候，线程会放弃对象锁，进入等待此对象的等待锁定池，只有针对此对象调用notify()方法后本线程才进入对象锁定池准备</p>
+<p>PS：</p>
+<p>这里延伸一个话题： synchronized (xxx.class)这种机锁锁定的到底是什么？为什么在ThreadA中wait的可以在ThreadB中notify？后续研究，记个TODO</p>
+<h3 id="10-什么是公平锁-amp-非公平锁-amp-区别？"><a href="#10-什么是公平锁-amp-非公平锁-amp-区别？" class="headerlink" title="10 什么是公平锁&amp;非公平锁&amp;区别？"></a>10 什么是公平锁&amp;非公平锁&amp;区别？</h3><p>公平锁是指多个线程按照申请锁的顺序来获取锁。<br>非公平锁是指多个线程获取锁的顺序并不是按照申请锁的顺序，有可能后申请的线程比先申请的线程优先获取锁。有可能，会造成优先级反转或者饥饿现象。</p>
+<h3 id="11-给我讲讲线程间通信"><a href="#11-给我讲讲线程间通信" class="headerlink" title="11 给我讲讲线程间通信"></a>11 给我讲讲线程间通信</h3><p>说实话，这个问题没太懂，线程间更应该讨论的是锁的问题吧</p>
+<h3 id="12-volatile关键字是如何使用的？原理是什么"><a href="#12-volatile关键字是如何使用的？原理是什么" class="headerlink" title="12 volatile关键字是如何使用的？原理是什么"></a>12 volatile关键字是如何使用的？原理是什么</h3><p>如何使用：</p>
+<p>保证可见性：在变量前面加声明，保证其他线程有操作的时候，当前操作线程中处于cpu的缓存失效，进而从内存中读取</p>
+<p>原理：观察加入volatile关键字和没有加入volatile关键字时所生成的汇编代码发现，加入volatile关键字时，会多出一个lock前缀指令</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3920373.html">https://www.cnblogs.com/dolphin0520/p/3920373.html</a>  这篇文章写的很好</p>
+<h3 id="13-说说使用5个线程去计算一个数组之和的思路。"><a href="#13-说说使用5个线程去计算一个数组之和的思路。" class="headerlink" title="13 说说使用5个线程去计算一个数组之和的思路。"></a>13 说说使用5个线程去计算一个数组之和的思路。</h3><p>线程安全即可</p>
+<h3 id="14-谈谈线程阻塞的原因有哪些？"><a href="#14-谈谈线程阻塞的原因有哪些？" class="headerlink" title="14 谈谈线程阻塞的原因有哪些？"></a>14 谈谈线程阻塞的原因有哪些？</h3><h3 id="15-谈谈你对notify的理解？"><a href="#15-谈谈你对notify的理解？" class="headerlink" title="15 谈谈你对notify的理解？"></a>15 谈谈你对notify的理解？</h3><h3 id="16-你觉得Lock和Synchronized的区别是什么？"><a href="#16-你觉得Lock和Synchronized的区别是什么？" class="headerlink" title="16 你觉得Lock和Synchronized的区别是什么？"></a>16 你觉得Lock和Synchronized的区别是什么？</h3><h3 id="17-谈谈你对ReentrantLock的认识。"><a href="#17-谈谈你对ReentrantLock的认识。" class="headerlink" title="17 谈谈你对ReentrantLock的认识。"></a>17 谈谈你对ReentrantLock的认识。</h3><h3 id="18-调用run-和start-的区别？"><a href="#18-调用run-和start-的区别？" class="headerlink" title="18 调用run()和start()的区别？"></a>18 调用run()和start()的区别？</h3><h3 id="19-transient关键字的用法-amp-作用-amp-原理。"><a href="#19-transient关键字的用法-amp-作用-amp-原理。" class="headerlink" title="19 transient关键字的用法 &amp; 作用 &amp; 原理。"></a>19 transient关键字的用法 &amp; 作用 &amp; 原理。</h3><h3 id="20-ThreadPoolExecutor的工作策略有哪些？"><a href="#20-ThreadPoolExecutor的工作策略有哪些？" class="headerlink" title="20 ThreadPoolExecutor的工作策略有哪些？"></a>20 ThreadPoolExecutor的工作策略有哪些？</h3><h3 id="21-ThreadLocal了解吗？说说原理。"><a href="#21-ThreadLocal了解吗？说说原理。" class="headerlink" title="21 ThreadLocal了解吗？说说原理。"></a>21 ThreadLocal了解吗？说说原理。</h3><h3 id="22-权衡多线程的性能。"><a href="#22-权衡多线程的性能。" class="headerlink" title="22 权衡多线程的性能。"></a>22 权衡多线程的性能。</h3><h3 id="23-如何理解同步和异步，阻塞和非阻塞。"><a href="#23-如何理解同步和异步，阻塞和非阻塞。" class="headerlink" title="23 如何理解同步和异步，阻塞和非阻塞。"></a>23 如何理解同步和异步，阻塞和非阻塞。</h3><h3 id="24-比较一下线程和协程。"><a href="#24-比较一下线程和协程。" class="headerlink" title="24 比较一下线程和协程。"></a>24 比较一下线程和协程。</h3><h3 id="25-从源码角度讲讲你对Thread类中run方法的理解。"><a href="#25-从源码角度讲讲你对Thread类中run方法的理解。" class="headerlink" title="25 从源码角度讲讲你对Thread类中run方法的理解。"></a>25 从源码角度讲讲你对Thread类中run方法的理解。</h3><h3 id="26-谈谈Java内存模型。"><a href="#26-谈谈Java内存模型。" class="headerlink" title="26 谈谈Java内存模型。"></a>26 谈谈Java内存模型。</h3><h3 id="27-两次调用Thread对象的start方法会发生什么？为什么？"><a href="#27-两次调用Thread对象的start方法会发生什么？为什么？" class="headerlink" title="27 两次调用Thread对象的start方法会发生什么？为什么？"></a>27 两次调用Thread对象的start方法会发生什么？为什么？</h3><h3 id="28-Thread的sleep方法会清除中断的状态吗？"><a href="#28-Thread的sleep方法会清除中断的状态吗？" class="headerlink" title="28 Thread的sleep方法会清除中断的状态吗？"></a>28 Thread的sleep方法会清除中断的状态吗？</h3><h3 id="29-为什么线程通信的方法wait-notify-notifyAll被定义于Object中，而sleep方法被定义在Thread类中？"><a href="#29-为什么线程通信的方法wait-notify-notifyAll被定义于Object中，而sleep方法被定义在Thread类中？" class="headerlink" title="29 为什么线程通信的方法wait,notify,notifyAll被定义于Object中，而sleep方法被定义在Thread类中？"></a>29 为什么线程通信的方法wait,notify,notifyAll被定义于Object中，而sleep方法被定义在Thread类中？</h3><h3 id="30-说说Thread类中提供的getState-方法作用，然后说说线程的状态有哪些以及转换过程。"><a href="#30-说说Thread类中提供的getState-方法作用，然后说说线程的状态有哪些以及转换过程。" class="headerlink" title="30 说说Thread类中提供的getState()方法作用，然后说说线程的状态有哪些以及转换过程。"></a>30 说说Thread类中提供的getState()方法作用，然后说说线程的状态有哪些以及转换过程。</h3><h3 id="31-用至少2种方式手写生产者消费者模式代码。"><a href="#31-用至少2种方式手写生产者消费者模式代码。" class="headerlink" title="31 用至少2种方式手写生产者消费者模式代码。"></a>31 用至少2种方式手写生产者消费者模式代码。</h3><h3 id="32-interrupted和isInterrupted方法的区别？"><a href="#32-interrupted和isInterrupted方法的区别？" class="headerlink" title="32 interrupted和isInterrupted方法的区别？"></a>32 interrupted和isInterrupted方法的区别？</h3><h3 id="33-分别讲讲JVM内存结构-Java内存模型-Java对象模型。"><a href="#33-分别讲讲JVM内存结构-Java内存模型-Java对象模型。" class="headerlink" title="33 分别讲讲JVM内存结构,Java内存模型,Java对象模型。"></a>33 分别讲讲JVM内存结构,Java内存模型,Java对象模型。</h3><h3 id="34-什么是happens-before-它的规则有哪些？"><a href="#34-什么是happens-before-它的规则有哪些？" class="headerlink" title="34 什么是happens-before?它的规则有哪些？"></a>34 什么是happens-before?它的规则有哪些？</h3><h3 id="35-什么是JMM-谈谈工作内存和主内存的关系。"><a href="#35-什么是JMM-谈谈工作内存和主内存的关系。" class="headerlink" title="35 什么是JMM?谈谈工作内存和主内存的关系。"></a>35 什么是JMM?谈谈工作内存和主内存的关系。</h3><h3 id="36-Java重排序了解吗？谈谈重排序的3种情况。"><a href="#36-Java重排序了解吗？谈谈重排序的3种情况。" class="headerlink" title="36 Java重排序了解吗？谈谈重排序的3种情况。"></a>36 Java重排序了解吗？谈谈重排序的3种情况。</h3><h3 id="37-什么是可见性？为什么存在可见性问题？怎样解决可见性带来的问题？"><a href="#37-什么是可见性？为什么存在可见性问题？怎样解决可见性带来的问题？" class="headerlink" title="37 什么是可见性？为什么存在可见性问题？怎样解决可见性带来的问题？"></a>37 什么是可见性？为什么存在可见性问题？怎样解决可见性带来的问题？</h3><h3 id="38-管程是什么？谈谈它的重要性。"><a href="#38-管程是什么？谈谈它的重要性。" class="headerlink" title="38 管程是什么？谈谈它的重要性。"></a>38 管程是什么？谈谈它的重要性。</h3><h2 id="9-泛型"><a href="#9-泛型" class="headerlink" title="9 泛型"></a>9 泛型</h2><h3 id="1-什么是泛型？能解决什么问题？"><a href="#1-什么是泛型？能解决什么问题？" class="headerlink" title="1 什么是泛型？能解决什么问题？"></a>1 什么是泛型？能解决什么问题？</h3><p>定义：泛型的本质是参数化类型，也就是说，泛型就是将所操作的数据类型作为参数的一种语法。</p>
+<p>解决问题：在编译时提前发现类型问题，尽量避免运行时ClassCastException</p>
+<h3 id="2-说说Java中泛型的工作机制？"><a href="#2-说说Java中泛型的工作机制？" class="headerlink" title="2 说说Java中泛型的工作机制？"></a>2 说说Java中泛型的工作机制？</h3><p>泛型就是个语法糖，在编译成字节码前被擦除</p>
+<h3 id="3-在泛型种extends和super关键字的区别是什么？"><a href="#3-在泛型种extends和super关键字的区别是什么？" class="headerlink" title="3 在泛型种extends和super关键字的区别是什么？"></a>3 在泛型种extends和super关键字的区别是什么？</h3><p>? 通配符类型<br>&lt;? extends T&gt; 表示类型的上界，表示参数化类型的可能是T 或是 T的子类<br>&lt;? super T&gt; 表示类型下界（Java Core中叫超类型限定），表示参数化类型是此类型的超类型（父类型），直至Object</p>
+<p>PESC原则</p>
+<p>如果要从集合中读取类型T的数据，并且不能写入，可以使用 ? extends 通配符；(<strong>Producer Extends</strong>)<br>如果要从集合中写入类型T的数据，并且不需要读取，可以使用 ? super 通配符；(<strong>Consumer Super</strong>)<br>如果既要存又要取，那么就不要使用任何通配符。</p>
+<h3 id="4-比较一下其它语言中的泛型和Java泛型的区别。"><a href="#4-比较一下其它语言中的泛型和Java泛型的区别。" class="headerlink" title="4 比较一下其它语言中的泛型和Java泛型的区别。"></a>4 比较一下其它语言中的泛型和Java泛型的区别。</h3><p>Java是假泛型</p>
+<h3 id="5-在Java中List-lt-A-gt-和List-lt-B-gt-是一样的类型还是不一样的类型？为什么？"><a href="#5-在Java中List-lt-A-gt-和List-lt-B-gt-是一样的类型还是不一样的类型？为什么？" class="headerlink" title="5 在Java中List&lt; A &gt;和List&lt; B &gt;是一样的类型还是不一样的类型？为什么？"></a>5 在Java中List&lt; A &gt;和List&lt; B &gt;是一样的类型还是不一样的类型？为什么？</h3><p>我理解是一样的，字节码中都会被翻译成object</p>
+<h3 id="6-你可以例举一些自己使用泛型的栗子吗？"><a href="#6-你可以例举一些自己使用泛型的栗子吗？" class="headerlink" title="6 你可以例举一些自己使用泛型的栗子吗？"></a>6 你可以例举一些自己使用泛型的栗子吗？</h3><h2 id="1-10-反射"><a href="#1-10-反射" class="headerlink" title="1.10 反射"></a>1.10 反射</h2><ul>
+<li>1.什么是反射？</li>
+<li>2.如何获取一个类的成员变量 &amp; 成员方法 &amp; 注解信息 &amp; …。</li>
+<li>3.通常在项目当中用到反射多吗？都是用来干嘛？</li>
+<li>4.如何反射一个匿名内部类(考察对匿名内部类的认识)</li>
+</ul>
+<h3 id="1-12-注解"><a href="#1-12-注解" class="headerlink" title="1.12 注解"></a>1.12 注解</h3><ul>
+<li>1.什么是注解 &amp; 它和注释的区别？</li>
+<li>2.注解的工作机制是什么？</li>
+<li>3.如何解析注解？</li>
+</ul>
+<h3 id="1-13-Socket编程"><a href="#1-13-Socket编程" class="headerlink" title="1.13 Socket编程"></a>1.13 Socket编程</h3><ul>
+<li>1.什么是Socket编程？</li>
+<li>2.什么是TCP,什么是UDP,二者之间区别如何？</li>
+</ul>
+<h3 id="1-14-设计模式"><a href="#1-14-设计模式" class="headerlink" title="1.14 设计模式"></a>1.14 设计模式</h3><ul>
+<li>1.说说设计模式的六大原则。</li>
+<li>2.请讲讲你会使用的一些设计模式？</li>
+<li>3.请说说单例模式 &amp; 你项目中常用的单例模式。</li>
+<li>4.懒汉单例模式为什么要加volaitle？</li>
+<li>5.能否给我说说Android中至少3个用到设计模式的栗子？</li>
+</ul>
+<h3 id="1-15-JVM相关"><a href="#1-15-JVM相关" class="headerlink" title="1.15 JVM相关"></a>1.15 JVM相关</h3><ul>
+<li>1.什么是class文件？</li>
+<li>2.Java代码执行流程？</li>
+<li>3.Java内存结构 &amp; 内存模型。</li>
+<li>4.GC回收机制。</li>
+<li>5.Java虚拟机是如何加载一个类的？</li>
+<li>6.给我谈谈类加载器。</li>
+<li>7.谈谈static编译运行时的流程，在虚拟机中如何保存的？</li>
+<li>8.说说Java种的4种引用以及用法？</li>
+<li>9.如何判断一个对象是死亡的？</li>
+<li>10.代码中直接调用System.gc()会发生什么？</li>
+<li>11.一个强引用直接被null赋值，那么这个对象会被立刻回收吗？</li>
+<li>12.String a = “a”+”b”+”c”;在内存中创建了几个对象？</li>
+<li>13.谈谈你对字符集的理解。</li>
+<li>14.常见的编码格式有哪些？</li>
+<li>15.utf-8中的中文占几个字节？int型占几个字节？</li>
+<li>16.谈谈你对逻辑地址和物理地址的理解？</li>
+<li>17.你知道对象什么时候会回调finalize方法吗？</li>
+<li>18.什么是Java内存模型 &amp; Java7、8、9内存模型的区别.</li>
+</ul>
+<h3 id="1-16-高级Java知识点"><a href="#1-16-高级Java知识点" class="headerlink" title="1.16 高级Java知识点"></a>1.16 高级Java知识点</h3><ul>
+<li>1.AOP是什么 &amp; 和OOP区别？实现的方式有哪些？Android中如何实现？</li>
+<li>2.APT是什么？例举一些基于它实现的轮子 &amp; 自己有玩过它吗 &amp; 做了些什么？</li>
+<li>3.字节码篡改技术了解吗？</li>
+</ul>
+<h3 id="1-17-其它Java部分有关面试题"><a href="#1-17-其它Java部分有关面试题" class="headerlink" title="1.17 其它Java部分有关面试题"></a>1.17 其它Java部分有关面试题</h3><ul>
+<li>1.为什么局部内部类访问局部变量需要final?</li>
+<li>2.String、StringBuffer、StringBuilder、CharSequence的区别。</li>
+<li>3.equals和==的区别？</li>
+<li>4.关于字符串的拼接你在项目中常常怎么操作的？为什么不能用“+”的方式进行拼接呢？</li>
+<li>5.什么是Callback,讲讲你项目中使用的一些有关Callback的栗子。</li>
+<li>6.retrun &amp; break &amp; continue 区别？</li>
+<li>7.如何判断一个字符串是回文字符串？</li>
+<li>8.final,finally,finalize的区别？</li>
+<li>9.什么是动态代理 &amp; 什么是静态代理？</li>
+<li>10.String为什么会加final？</li>
+<li>11.OOM可以try{}catch{}吗？</li>
+<li>12.给我谈谈正则表达式。</li>
+<li>13.如何将String转成int?</li>
+<li>14.谈谈你对String的理解。</li>
+<li>15.你如何理解序列化？有哪些方式序列化？</li>
+<li>16.谈谈你对依赖注入的理解。</li>
+<li>17.给我谈谈你对分派的理解。</li>
+</ul>
+<h1 id="2-Android-部分"><a href="#2-Android-部分" class="headerlink" title="2.Android 部分"></a>2.Android 部分</h1><h2 id="2-1-Activity"><a href="#2-1-Activity" class="headerlink" title="2.1 Activity"></a>2.1 Activity</h2><h3 id="1-Activity是什么？"><a href="#1-Activity是什么？" class="headerlink" title="1.Activity是什么？"></a>1.Activity是什么？</h3><p>Activity实际上只是一个与用户交互的接口</p>
+<h3 id="2-典型情况下的Activity生命周期？"><a href="#2-典型情况下的Activity生命周期？" class="headerlink" title="2.典型情况下的Activity生命周期？"></a>2.典型情况下的Activity生命周期？</h3><p>Activie:当前Activity正处于运行状态，指的是当前Activity获取了焦点。</p>
+<p>paused：当前Activity正处于暂停状态，指的是当前Activity失去焦点，此时的Activity并没有被销毁，内存里面的成员变量，状态信息等仍然存在，当然这个Activity也仍然可见，但是焦点却不在它身上，比如被一个对话框形式的Activity获取了焦点，或者被一个透明的Activity获取了焦点，这都能导致当前的Activity处于paused状态。</p>
+<p>stopped:与paused状态相似，stopped状态的Activity是完全不可见的，但是内存里面的成员变量，状态信息等仍然存在，但是也没有被销毁。</p>
+<p>killed:已经被销毁的Activity才处于killed状态，它的内存里面的成员变量，状态信息等都会被一并回收。</p>
+<p>Activity启动–&gt;onCreate()–&gt;onStart()–&gt;onResume()</p>
+<p>点击home键回到桌面–&gt;onPause()–&gt;onStop()</p>
+<p>再次回到原Activity时–&gt;onRestart()–&gt;onStart()–&gt;onResume()</p>
+<p>退出当前Activity时–&gt;onPause()–&gt;onStop()–&gt;onDestroy()</p>
+<p>详细见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/clandellen/article/details/79257489">https://blog.csdn.net/clandellen/article/details/79257489</a></p>
+<h3 id="3-异常情况下的Activity的生命周期-amp-数据如何保存和恢复？"><a href="#3-异常情况下的Activity的生命周期-amp-数据如何保存和恢复？" class="headerlink" title="3.异常情况下的Activity的生命周期 &amp; 数据如何保存和恢复？"></a>3.异常情况下的Activity的生命周期 &amp; 数据如何保存和恢复？</h3><p>onSaveInstanceState：总会发生在onStop之前，至于会不会调用时机发生在onPause方法之前，那就说不定了</p>
+<p>onRestoreInstanceState和onCreate：通过这两个方法中回调的bundle重建</p>
+<h3 id="4-从Activity-A跳转到Activity-B之后，然后再点击back按键之后，它们的生命周期调用流程是什么？"><a href="#4-从Activity-A跳转到Activity-B之后，然后再点击back按键之后，它们的生命周期调用流程是什么？" class="headerlink" title="4.从Activity A跳转到Activity B之后，然后再点击back按键之后，它们的生命周期调用流程是什么？"></a>4.从Activity A跳转到Activity B之后，然后再点击back按键之后，它们的生命周期调用流程是什么？</h3><p><strong>从Activity A跳转到Activity B</strong></p>
+<p>Activity A –&gt; onPause()<br>Activity B –&gt; onCreate()<br>Activity B –&gt; onStart()<br>Activity B –&gt; onResume()<br>Activity A –&gt; onStop()</p>
+<p><strong>然后在Activity B点击back键</strong></p>
+<p>Activity B –&gt; onPause()<br>Activity A –&gt; onRestart()<br>Activity A –&gt; onStart()<br>Activity A –&gt; onResume()<br>Activity B –&gt; onStop()<br>Activity B –&gt; onDestory()</p>
+<h3 id="5-如何统计Activity的工作时间？"><a href="#5-如何统计Activity的工作时间？" class="headerlink" title="5.如何统计Activity的工作时间？"></a>5.如何统计Activity的工作时间？</h3><p>每次Activity调用onResume()的时候记录一个时间a，每次调用onPause()的时候再记录一个时间b,那么由b-a可得当次Activity工作的时间</p>
+<h3 id="6-给我说说Activity的启动模式-amp-使用场景。"><a href="#6-给我说说Activity的启动模式-amp-使用场景。" class="headerlink" title="6.给我说说Activity的启动模式 &amp; 使用场景。"></a>6.给我说说Activity的启动模式 &amp; 使用场景。</h3><p>Standard（标准模式）：每次启动一个Activity都会重新创建一个新的实例，标准的生命周期</p>
+<p>SingleTop（栈顶复用模式）、SingTask（栈内复用模式）：这两种模式合起来说，栈顶复用就是如果栈顶就是要创建的activity，那么不创建新的；栈内复用模式就是只要栈内有就不创建新的，同时附带cleartop效果；</p>
+<p>SingleInstance（单实例模式）：除了具有singleTask模式所有的特性外，还加强了一点，那就是具有此种模式的Activity只能单独位于一个任务栈中</p>
+<p>SingleInstance特点：</p>
+<p>（1）以singleInstance模式启动的Activity具有全局唯一性，即整个系统中只会存在一个这样的实例。<br>（2）以singleInstance模式启动的Activity在整个系统中是单例的，如果在启动这样的Activiyt时，已经存在了一个实例，那么会把它所在的任务调度到前台，重用这个实例。<br>（3）以singleInstance模式启动的Activity具有独占性，即它会独自占用一个任务，被他开启的任何activity都会运行在其他任务中。<br>（4）被singleInstance模式的Activity开启的其他activity，能够在新的任务中启动，但不一定开启新的任务，也可能在已有的一个任务中开启。</p>
+<h3 id="7-如何在任意位置关掉应用所有Activity-amp-如何在任意位置关掉指定的Activity？"><a href="#7-如何在任意位置关掉应用所有Activity-amp-如何在任意位置关掉指定的Activity？" class="headerlink" title="7.如何在任意位置关掉应用所有Activity &amp; 如何在任意位置关掉指定的Activity？"></a>7.如何在任意位置关掉应用所有Activity &amp; 如何在任意位置关掉指定的Activity？</h3><p>遍历进行finish</p>
+<h3 id="8-Activity的启动流程-从源码角度解析-？"><a href="#8-Activity的启动流程-从源码角度解析-？" class="headerlink" title="8.Activity的启动流程(从源码角度解析)？"></a>8.Activity的启动流程(从源码角度解析)？</h3><h3 id="9-启动一个其它应用的Activity的生命周期分析。"><a href="#9-启动一个其它应用的Activity的生命周期分析。" class="headerlink" title="9.启动一个其它应用的Activity的生命周期分析。"></a>9.启动一个其它应用的Activity的生命周期分析。</h3><h3 id="10-Activity任务栈是什么？在项目中有用到它吗？说给我听听"><a href="#10-Activity任务栈是什么？在项目中有用到它吗？说给我听听" class="headerlink" title="10.Activity任务栈是什么？在项目中有用到它吗？说给我听听"></a>10.Activity任务栈是什么？在项目中有用到它吗？说给我听听</h3><h3 id="11-什么情况下Activity不走onDestory"><a href="#11-什么情况下Activity不走onDestory" class="headerlink" title="11.什么情况下Activity不走onDestory?"></a>11.什么情况下Activity不走onDestory?</h3><p>从mainactivity跳转到activity-A（或者继续从activity-A再跳转到activity-B），这时候，从后台强杀，只会执行mainactivity的onDestroy方法，activity-A（以及activity-B）的onDestroy方法都不会执行,注意笔者这里说的是当前应用为焦点应用时才会如此，如果切换到后台去了，当前此应用不再是焦点应用，如果再强杀该应用，那么栈中所有的Activity都会执行onDestory,注意区别，这里也是感谢网友的测试验证出的结论;</p>
+<h3 id="12-什么情况下Activity会单独执行onPause"><a href="#12-什么情况下Activity会单独执行onPause" class="headerlink" title="12.什么情况下Activity会单独执行onPause?"></a>12.什么情况下Activity会单独执行onPause?</h3><p>表示Activity正在暂停，大多数情况下，Activity执行完onPause()函数后会继续执行onStop()函数，造成这种函数调用的原因是当前的Activity启动了另外一个Activity或者回切到上一个Activity。还有一种情况就是onPause()函数被单独执行了，并没有附带执行onStop()方法，造成这种函数调用的原因很简单，就是当前Activity里启动了类似于对话框的东东。</p>
+<h3 id="13-a-gt-b-gt-c界面，其中b是SingleInstance的，那么c界面点back返回a界面，为什么？"><a href="#13-a-gt-b-gt-c界面，其中b是SingleInstance的，那么c界面点back返回a界面，为什么？" class="headerlink" title="13.a-&gt;b-&gt;c界面，其中b是SingleInstance的，那么c界面点back返回a界面，为什么？"></a>13.a-&gt;b-&gt;c界面，其中b是SingleInstance的，那么c界面点back返回a界面，为什么？</h3><p>b启动了个单独栈</p>
+<h3 id="14-如果一个Activity弹出一个Dialog-那么这个Acitvity会回调哪些生命周期函数呢？"><a href="#14-如果一个Activity弹出一个Dialog-那么这个Acitvity会回调哪些生命周期函数呢？" class="headerlink" title="14.如果一个Activity弹出一个Dialog,那么这个Acitvity会回调哪些生命周期函数呢？"></a>14.如果一个Activity弹出一个Dialog,那么这个Acitvity会回调哪些生命周期函数呢？</h3><p>应该就是onpause</p>
+<h3 id="15-Activity之间如何通信-amp-Activity和Fragment之间通信-amp-Activity和Service之间通信？"><a href="#15-Activity之间如何通信-amp-Activity和Fragment之间通信-amp-Activity和Service之间通信？" class="headerlink" title="15.Activity之间如何通信 &amp; Activity和Fragment之间通信 &amp; Activity和Service之间通信？"></a>15.Activity之间如何通信 &amp; Activity和Fragment之间通信 &amp; Activity和Service之间通信？</h3><p><strong>Activity-&gt;Activity</strong></p>
+<p>1.intent+bundle</p>
+<p>2.静态变量/全局变量</p>
+<p><strong>Activity-&gt;Fragment</strong></p>
+<p>1.setArgument的bundle</p>
+<p>2.直接引用赋值</p>
+<p><strong>Activity-&gt;Service</strong></p>
+<p>1.bindservice后实现serviceConnecttion接口；</p>
+<p>2.intent；</p>
+<h3 id="16-说说Activity横竖屏切换的生命周期。"><a href="#16-说说Activity横竖屏切换的生命周期。" class="headerlink" title="16.说说Activity横竖屏切换的生命周期。"></a>16.说说Activity横竖屏切换的生命周期。</h3><h3 id="17-前台切换到后台，然后在回到前台时Activity的生命周期。"><a href="#17-前台切换到后台，然后在回到前台时Activity的生命周期。" class="headerlink" title="17.前台切换到后台，然后在回到前台时Activity的生命周期。"></a>17.前台切换到后台，然后在回到前台时Activity的生命周期。</h3><h3 id="18-下拉状态栏时Activity的生命周期？"><a href="#18-下拉状态栏时Activity的生命周期？" class="headerlink" title="18.下拉状态栏时Activity的生命周期？"></a>18.下拉状态栏时Activity的生命周期？</h3><h3 id="19-Activity与Fragment的生命周期比较？"><a href="#19-Activity与Fragment的生命周期比较？" class="headerlink" title="19.Activity与Fragment的生命周期比较？"></a>19.Activity与Fragment的生命周期比较？</h3><h3 id="20-了解哪些Activity常用的标记位Flags？"><a href="#20-了解哪些Activity常用的标记位Flags？" class="headerlink" title="20.了解哪些Activity常用的标记位Flags？"></a>20.了解哪些Activity常用的标记位Flags？</h3><h3 id="21-谈谈隐式启动和显示启动Activity的方式？"><a href="#21-谈谈隐式启动和显示启动Activity的方式？" class="headerlink" title="21.谈谈隐式启动和显示启动Activity的方式？"></a>21.谈谈隐式启动和显示启动Activity的方式？</h3><h3 id="22-Activity用Intent传递数据和Bundle传递数据的区别？为什么不用HashMap呢？"><a href="#22-Activity用Intent传递数据和Bundle传递数据的区别？为什么不用HashMap呢？" class="headerlink" title="22.Activity用Intent传递数据和Bundle传递数据的区别？为什么不用HashMap呢？"></a>22.Activity用Intent传递数据和Bundle传递数据的区别？为什么不用HashMap呢？</h3><h3 id="23-在隐式启动中Intent可以设置多个action-多个category吗-amp-顺便讲讲它们的匹配规则？"><a href="#23-在隐式启动中Intent可以设置多个action-多个category吗-amp-顺便讲讲它们的匹配规则？" class="headerlink" title="23.在隐式启动中Intent可以设置多个action,多个category吗 &amp; 顺便讲讲它们的匹配规则？"></a>23.在隐式启动中Intent可以设置多个action,多个category吗 &amp; 顺便讲讲它们的匹配规则？</h3><h3 id="24-Activity可以设置为对话框的形式吗？"><a href="#24-Activity可以设置为对话框的形式吗？" class="headerlink" title="24.Activity可以设置为对话框的形式吗？"></a>24.Activity可以设置为对话框的形式吗？</h3><h3 id="25-如何给Activity设置进入和退出的动画？"><a href="#25-如何给Activity设置进入和退出的动画？" class="headerlink" title="25.如何给Activity设置进入和退出的动画？"></a>25.如何给Activity设置进入和退出的动画？</h3><h3 id="26-Activity使用Intent传递数据是否有限制-amp-如果传递一个复杂的对象，例如一个复杂的控件对象应该怎么做？"><a href="#26-Activity使用Intent传递数据是否有限制-amp-如果传递一个复杂的对象，例如一个复杂的控件对象应该怎么做？" class="headerlink" title="26.Activity使用Intent传递数据是否有限制 &amp; 如果传递一个复杂的对象，例如一个复杂的控件对象应该怎么做？"></a>26.Activity使用Intent传递数据是否有限制 &amp; 如果传递一个复杂的对象，例如一个复杂的控件对象应该怎么做？</h3><h3 id="27-在Activity中可以多次调用setContentView方法吗？说说不同时机第二次调用setContentView会发生什么？"><a href="#27-在Activity中可以多次调用setContentView方法吗？说说不同时机第二次调用setContentView会发生什么？" class="headerlink" title="27.在Activity中可以多次调用setContentView方法吗？说说不同时机第二次调用setContentView会发生什么？"></a>27.在Activity中可以多次调用setContentView方法吗？说说不同时机第二次调用setContentView会发生什么？</h3><h3 id="28-说说分别在Activity里每一个生命周期函数里调用finish方法后，接下来Activity的生命周期如何回调？"><a href="#28-说说分别在Activity里每一个生命周期函数里调用finish方法后，接下来Activity的生命周期如何回调？" class="headerlink" title="28.说说分别在Activity里每一个生命周期函数里调用finish方法后，接下来Activity的生命周期如何回调？"></a>28.说说分别在Activity里每一个生命周期函数里调用finish方法后，接下来Activity的生命周期如何回调？</h3><h3 id="29-有什么方法可以启动一个没有在AndroidManifest-xml中注册过的Activity"><a href="#29-有什么方法可以启动一个没有在AndroidManifest-xml中注册过的Activity" class="headerlink" title="29.有什么方法可以启动一个没有在AndroidManifest.xml中注册过的Activity?"></a>29.有什么方法可以启动一个没有在AndroidManifest.xml中注册过的Activity?</h3><h3 id="30-在Activity进行配置时，catrgory和action的区别是什么？"><a href="#30-在Activity进行配置时，catrgory和action的区别是什么？" class="headerlink" title="30.在Activity进行配置时，catrgory和action的区别是什么？"></a>30.在Activity进行配置时，catrgory和action的区别是什么？</h3><h3 id="31-activity中分别在onCreate，onStart，onResume中调用finish后的生命周期如何回调？"><a href="#31-activity中分别在onCreate，onStart，onResume中调用finish后的生命周期如何回调？" class="headerlink" title="31.activity中分别在onCreate，onStart，onResume中调用finish后的生命周期如何回调？"></a>31.activity中分别在onCreate，onStart，onResume中调用finish后的生命周期如何回调？</h3><h3 id="32-锁定屏与解锁屏幕，Activity-生命周期？"><a href="#32-锁定屏与解锁屏幕，Activity-生命周期？" class="headerlink" title="32.锁定屏与解锁屏幕，Activity 生命周期？"></a>32.锁定屏与解锁屏幕，Activity 生命周期？</h3><h3 id="33-如何设置Activity进入和退出的动画？"><a href="#33-如何设置Activity进入和退出的动画？" class="headerlink" title="33.如何设置Activity进入和退出的动画？"></a>33.如何设置Activity进入和退出的动画？</h3><h3 id="34-谈谈你对Activity中onNewIntent-方法的认识？"><a href="#34-谈谈你对Activity中onNewIntent-方法的认识？" class="headerlink" title="34.谈谈你对Activity中onNewIntent()方法的认识？"></a>34.谈谈你对Activity中onNewIntent()方法的认识？</h3><h3 id="35-如果一个Activity启动比较慢，需要优化，你觉得可以从哪些方面入手？"><a href="#35-如果一个Activity启动比较慢，需要优化，你觉得可以从哪些方面入手？" class="headerlink" title="35.如果一个Activity启动比较慢，需要优化，你觉得可以从哪些方面入手？"></a>35.如果一个Activity启动比较慢，需要优化，你觉得可以从哪些方面入手？</h3><h3 id="36-Activity之间传递数据的方式Intent是否有大小限制，如果传递的数据量偏大，有哪些方案？"><a href="#36-Activity之间传递数据的方式Intent是否有大小限制，如果传递的数据量偏大，有哪些方案？" class="headerlink" title="36.Activity之间传递数据的方式Intent是否有大小限制，如果传递的数据量偏大，有哪些方案？"></a>36.Activity之间传递数据的方式Intent是否有大小限制，如果传递的数据量偏大，有哪些方案？</h3><h3 id="37-了解scheme跳转协议吗？谈一谈"><a href="#37-了解scheme跳转协议吗？谈一谈" class="headerlink" title="37.了解scheme跳转协议吗？谈一谈"></a>37.了解scheme跳转协议吗？谈一谈</h3><h3 id="38-谈谈你对Activity的Context的认识？"><a href="#38-谈谈你对Activity的Context的认识？" class="headerlink" title="38.谈谈你对Activity的Context的认识？"></a>38.谈谈你对Activity的Context的认识？</h3><h3 id="39-如何在Application中获取当前Activity实例？"><a href="#39-如何在Application中获取当前Activity实例？" class="headerlink" title="39.如何在Application中获取当前Activity实例？"></a>39.如何在Application中获取当前Activity实例？</h3><h3 id="40-Activity进程优先级？"><a href="#40-Activity进程优先级？" class="headerlink" title="40.Activity进程优先级？"></a>40.Activity进程优先级？</h3><h3 id="41-Activity出现ANR的条件有哪些-amp-解决方案？"><a href="#41-Activity出现ANR的条件有哪些-amp-解决方案？" class="headerlink" title="41.Activity出现ANR的条件有哪些 &amp; 解决方案？"></a>41.Activity出现ANR的条件有哪些 &amp; 解决方案？</h3><h3 id="42-Activity什么时候加载布局文件的？什么开始进行UI绘制？"><a href="#42-Activity什么时候加载布局文件的？什么开始进行UI绘制？" class="headerlink" title="42.Activity什么时候加载布局文件的？什么开始进行UI绘制？"></a>42.Activity什么时候加载布局文件的？什么开始进行UI绘制？</h3><h2 id="3-2-BroadcastReceiver"><a href="#3-2-BroadcastReceiver" class="headerlink" title="3.2 BroadcastReceiver"></a>3.2 BroadcastReceiver</h2><ul>
+<li>1.广播是什么？</li>
+<li>2.广播的注册方式有哪些？</li>
+<li>3.广播的分类 &amp; 特性 &amp; 使用场景？</li>
+<li>4.说说系统广播和本地广播的原理 &amp; 区别 &amp; 使用场景。</li>
+<li>5.有两个应用注册了一样的广播，一个是静态，一个是动态，连优先级也一样，那么当广播从系统发出来后，哪个应用先接收到广播？</li>
+</ul>
+<h3 id="3-3-ContentProvider"><a href="#3-3-ContentProvider" class="headerlink" title="3.3 ContentProvider"></a>3.3 ContentProvider</h3><ul>
+<li>1.什么是内容提供者？</li>
+<li>2.说说如何创建自己应用的内容提供者 &amp; 使用场景。</li>
+<li>3.说说ContentProvider的原理。</li>
+<li>4.ContentProvider,ContentResolver,ContentObserver之间的关系？</li>
+<li>5.说说ContentProvider的权限管理。</li>
+</ul>
+<h3 id="3-4-Service"><a href="#3-4-Service" class="headerlink" title="3.4 Service"></a>3.4 Service</h3><ul>
+<li>1.什么是Service?</li>
+<li>2.说说Service的生命周期。</li>
+<li>3.Service和Thread的区别？</li>
+<li>4.Android 5.0以上的隐式启动问题及其解决方案。</li>
+<li>5.给我说说Service保活方案</li>
+<li>6.IntentService是什么 &amp; 原理 &amp; 使用场景 &amp; 和Service的区别。</li>
+<li>7.创建一个独立进程的Service应该怎样做？</li>
+<li>8.Service和Activity之间如何通信？</li>
+<li>9.说说你了解的系统Service。</li>
+<li>10.谈谈你对ActivityManagerService的理解。</li>
+<li>11.在Activtiy中创建一个Thread和在一个Service中创建一个Thread的区别？</li>
+</ul>
+<h3 id="3-5-Handler"><a href="#3-5-Handler" class="headerlink" title="3.5 Handler"></a>3.5 Handler</h3><ul>
+<li>1.子线程一定不能更新UI吗？</li>
+<li>2.给我说说Handler的原理</li>
+<li>3.Handler导致的内存泄露你是如何解决的？</li>
+<li>4.如何使用Handler让子线程和子线程通信？</li>
+<li>5.你能给我说说Handler的设计原理？</li>
+<li>6.HandlerThread是什么 &amp; 原理 &amp; 使用场景？</li>
+<li>7.IdleHandler是什么？</li>
+<li>8.一个线程能否创建多个Handler,Handler和Looper之间的对应关系？</li>
+<li>9.为什么Android系统不建议子线程访问UI？</li>
+<li>10.Looper死循环为什么不会导致应用卡死？</li>
+<li>11.使用Handler的postDealy后消息队列有什么变化？</li>
+<li>12.可以在子线程直接new一个Handler出来吗？</li>
+<li>13.Message对象创建的方式有哪些 &amp; 区别？</li>
+<li>14.ANR和Handler存在什么联系吗？    </li>
+<li>15.子线程的Looper和主线程的Looper有什么区别？    </li>
+<li>16.说说Handler为什么不能进行跨进程通信？    </li>
+<li>17.Handler的消息延时是如何实现的？    </li>
+<li>18.什么是消息屏障？    </li>
+<li>19.假设主线程new了Handler A和Handler B以及Handler C,现在有个子线程，在子线程中通过Handler C发送了一条消息，那么Handler A和Handler B能接收到吗？为什么？</li>
+<li>20.谈一谈Handler中Message的发送和取出过程。</li>
+</ul>
+<h3 id="3-6-AsyncTask"><a href="#3-6-AsyncTask" class="headerlink" title="3.6 AsyncTask"></a>3.6 AsyncTask</h3><ul>
+<li>1.AsyncTask是什么？能解决什么问题</li>
+<li>2.给我谈谈AsyncTask的三个泛型参数作用 &amp; 它的一些方法作用。</li>
+<li>3.给我说说AsyncTask的原理。</li>
+<li>4.你觉得AsyncTask有不足之处吗？</li>
+</ul>
+<h3 id="3-7-Fragment"><a href="#3-7-Fragment" class="headerlink" title="3.7 Fragment"></a>3.7 Fragment</h3><ul>
+<li>1.Android中v4包下Fragment和app包下Fragment的区别是什么？</li>
+<li>2.Fragment的生命周期 &amp; 请结合Activity的生命周期再一起说说。</li>
+<li>3.说说Fragment如何进行懒加载。</li>
+<li>4.ViewPager + Fragment结合使用会出现内存泄漏吗 &amp; Fragment在和ViewPager搭配使用时的生命周期情况 &amp; 如何解决？</li>
+<li>5.Fragment如何和Activity进行通信 &amp; Fragment之间如何进行通信？</li>
+<li>6.给我谈谈Fragment3种切换的方式以及区别 &amp; 使用场景。</li>
+<li>7.getFragmentManager,getSupportFragmentManager,getChildFragmentManager之间的区别？</li>
+<li>8.FragmentPagerAdapter和FragmentStatePagerAdapter区别？</li>
+<li>9.Fragment如何实现类似Activity栈的压栈和出栈效果的？</li>
+</ul>
+<h3 id="3-8-序列化"><a href="#3-8-序列化" class="headerlink" title="3.8 序列化"></a>3.8 序列化</h3><ul>
+<li>1.什么是序列化 &amp; 能用来干什么？</li>
+<li>2.Android中序列化方式有几种？说说它们的区别。</li>
+<li>3.如果想要序列化的类中某些字段不序列化，那么应该怎么做？</li>
+</ul>
+<h3 id="3-9-IPC"><a href="#3-9-IPC" class="headerlink" title="3.9 IPC"></a>3.9 IPC</h3><ul>
+<li>1.说说你对Android多进程开发的认识？</li>
+<li>2.Android中进程间通信的方式有哪些？</li>
+<li>3.什么是AIDL?如何创建一个AIDL。</li>
+</ul>
+<h3 id="3-10-文件存储"><a href="#3-10-文件存储" class="headerlink" title="3.10 文件存储"></a>3.10 文件存储</h3><ul>
+<li>1.说说Android中数据持久化的方式 &amp; 使用场景。</li>
+<li>2.接触过MMKV吗？说说SharedPreference和它的区别。</li>
+<li>3.第三方数据库框架用过哪些？有没有自己封装过一个SQLite的库？</li>
+<li>4.SQLite是线程安全的吗 &amp; SharedPreference是线程安全的吗？</li>
+<li>5.请简单的给我说说什么是三级缓存？</li>
+<li>6.SharedPreference的apply和commit的区别。</li>
+<li>7.谈谈你对SQLite事务的认识。</li>
+<li>8.千奇百怪的SQL语句考察。</li>
+<li>9.SharePreference跨进程使用会怎么样？如何保证跨进程使用安全？</li>
+<li>10.谈谈SQLite升级要注意哪些地方？</li>
+</ul>
+<h3 id="3-11-ListView-amp-RecyclerView"><a href="#3-11-ListView-amp-RecyclerView" class="headerlink" title="3.11 ListView &amp; RecyclerView"></a>3.11 ListView &amp; RecyclerView</h3><ul>
+<li>1.ListView是什么？如何使用？</li>
+<li>2.RecyclerView是什么？如何使用？如何返回不一样的Item。</li>
+<li>3.ListView和RecycyclerView的区别是什么？</li>
+<li>4.分别讲讲你对ListView &amp; RecyclerView的优化经验。</li>
+<li>5.给我说说RecyclerView的回收复用机制</li>
+<li>6.说说你是如何给ListView &amp; RecyclerView加上拉刷新 &amp; 下拉加载更多机制。</li>
+<li>7.谈谈你是如何对ListView &amp; RecycleView进行局部刷新的？</li>
+<li>8.谈谈如何进行分页加载？</li>
+<li>9.ScrollView下嵌套一个ListView通常会出现什么问题？</li>
+<li>10.一个ListView或者一个RecyclerView在显示新闻数据的时候，出现图片错位，可能的原因有哪些 &amp; 如何解决？</li>
+</ul>
+<h3 id="3-12-图片编程"><a href="#3-12-图片编程" class="headerlink" title="3.12 图片编程"></a>3.12 图片编程</h3><ul>
+<li>1.你对Bitmap了解吗？它在内存中如何存在？</li>
+<li>2.有关Bitmap导致OOM的原因知道吗？如何优化？</li>
+<li>3.给我谈谈图片压缩。</li>
+<li>4.LruCache &amp; DiskLruCache原理。</li>
+<li>5.说说你平常会使用的一些第三方图片加载库,最好给我谈谈它的原理。</li>
+<li>6.如果让你设计一个图片加载库，你会如何设计？</li>
+<li>7.有一张非常大的图片,你如何去加载这张大图片？</li>
+<li>8.你知道Android中处理图片的一些库吗(OpenCv &amp; GPUImage …)？</li>
+<li>9.如何计算一张图片在内存中占用的大小？</li>
+</ul>
+<h3 id="3-13-WebView"><a href="#3-13-WebView" class="headerlink" title="3.13 WebView"></a>3.13 WebView</h3><ul>
+<li>1.WebView是什么？</li>
+<li>2.WebView会导致内存泄露吗？原因是什么？解决方式有哪些？</li>
+<li>3.你知道Hybrid开发吗？说说你的相关经验。</li>
+<li>4.说说WebSettings &amp; WebViewClient &amp; WebChromeClient这三个类的作用 &amp; 用法。</li>
+<li>5.说说你了解的Hybrid框架。</li>
+<li>6.如何提高原生的WebView加载速度？</li>
+<li>7.谈谈你对webView工作机制的认识,你在项目中优化过它吗？说说是从哪些方面着手的？</li>
+<li>8.Android与 js 是如何交互的?</li>
+</ul>
+<h3 id="3-14-ViewPager"><a href="#3-14-ViewPager" class="headerlink" title="3.14 ViewPager"></a>3.14 ViewPager</h3><ul>
+<li>1.什么是ViewPager?说说它的那些适配器。</li>
+<li>2.你了解ViewPager2吗？和ViewPager 1有哪些区别？</li>
+<li>3.ViewPager + Fragment结合使用存在的内存泄漏的原因是什么？如何解决？</li>
+</ul>
+<h3 id="3-15-View事件分发机制"><a href="#3-15-View事件分发机制" class="headerlink" title="3.15 View事件分发机制"></a>3.15 View事件分发机制</h3><ul>
+<li>1.什么是事件分发机制？主要用来解决什么问题？</li>
+<li>2.给我说说事件分发的流程 &amp; 你项目解决事件冲突的一些案例。</li>
+<li>3.分别讲讲有关事件分发的三个方法的作用及关系。    </li>
+<li>4.如果我在一个设置了点击事件的TextView中dispatchTouchEvent方法强制返回ture或者false会发生什么？    </li>
+<li>5.谈谈你对MotionEvent的认识？Cancel事件是什么情况下触发的？</li>
+<li>6.线性布局A下面放置一个Button,如果给Button设置了点击事件，在线性布局A中重写了dispatchTouchEvent,onInterceptHoverEvent，而且它们都回了true,那么Button的点击事件会被调用吗？当前Activity的onTouchEvent又是否会被调用呢？为什么？    </li>
+<li>7.多点触摸事件平时接触过吗？如何监听用户第二个手指，第三个…？    </li>
+<li>8.OnTouchListener &amp; OnTouchEvent &amp; OnClickListener三者之间的关系？    </li>
+<li>9.谈谈你对MotionEvent的认识？Cancel事件是什么情况下触发的？    </li>
+<li>10.能给我谈谈Android中坐标体系吗？</li>
+</ul>
+<h3 id="3-16-View绘制机制"><a href="#3-16-View绘制机制" class="headerlink" title="3.16 View绘制机制"></a>3.16 View绘制机制</h3><ul>
+<li>1.说说View绘制流程。</li>
+<li>2.说说Activity View树结构。</li>
+<li>3.自定义View的方式有哪些?给我说说你之前项目中的案例。</li>
+<li>4.invalidate和postvalidate的区别？</li>
+<li>5.说说你在自定义View时常常重写的一些方法？</li>
+<li>6.说说自定义View中如何自定义属性？</li>
+<li>7.requestLayout(),onLayout(),onDraw(),drawChild()区别和联系？</li>
+<li>8.如何计算出一个View的嵌套层级？</li>
+<li>9.自定义View如何考虑机型适配？</li>
+</ul>
+<h3 id="3-17-布局"><a href="#3-17-布局" class="headerlink" title="3.17 布局"></a>3.17 布局</h3><ul>
+<li>1.说说Android中有哪些布局 &amp; 特点。</li>
+<li>2.你知道布局文件到控件对象的过程吗？</li>
+<li>3.有这么一个布局需求，一个文本控件放在屏幕一半的一半的中间位置，你如何进行布局？</li>
+<li>4.LinearLayout,FrameLayout,RelativeLayout性能对比，为什么？</li>
+</ul>
+<h3 id="3-18-Binder"><a href="#3-18-Binder" class="headerlink" title="3.18 Binder"></a>3.18 Binder</h3><ul>
+<li>1.什么是Binder？用来干什么？</li>
+<li>2.给我具体讲讲Binder机制。</li>
+</ul>
+<h3 id="3-19-动画机制"><a href="#3-19-动画机制" class="headerlink" title="3.19 动画机制"></a>3.19 动画机制</h3><ul>
+<li>1.Android中的动画分为哪些种类 &amp; 特点 &amp; 缺点。</li>
+<li>2.知道SVG &amp; 矢量动画吗？</li>
+<li>3.给我说说转场动画。</li>
+<li>4.给我谈谈插值器 &amp; 估值器 的作用。</li>
+<li>5.说说Android动画框架实现的原理。</li>
+</ul>
+<h3 id="3-20-JNI"><a href="#3-20-JNI" class="headerlink" title="3.20 JNI"></a>3.20 JNI</h3><ul>
+<li>1.什么是JNI?它主要用来干什么。</li>
+<li>2.Java Native方法如何和Native函数进行绑定的？</li>
+<li>3.JNI如何实现数据传递？</li>
+<li>4.如何全局捕获Native发生的异常？</li>
+<li>5.只有C/C++能编写Native库吗？</li>
+</ul>
+<h3 id="3-21-Window-amp-Appliction-amp-Context"><a href="#3-21-Window-amp-Appliction-amp-Context" class="headerlink" title="3.21 Window &amp; Appliction &amp; Context"></a>3.21 Window &amp; Appliction &amp; Context</h3><ul>
+<li>1.说说你对Android中Window的理解。</li>
+<li>2.说说你对Application的理解 &amp; 生命周期。</li>
+<li>3.Android中有哪些上下文 &amp; 区别 &amp; 作用。</li>
+<li>4.谈谈你对Android中Context的理解。</li>
+</ul>
+<h3 id="3-22-通知"><a href="#3-22-通知" class="headerlink" title="3.22 通知"></a>3.22 通知</h3><ul>
+<li>1.Android 8.0如何适配通知？</li>
+<li>2.自定义通知流程？</li>
+</ul>
+<h3 id="3-23-对话框-Dialog-amp-DialogFragment-amp-PopWindow"><a href="#3-23-对话框-Dialog-amp-DialogFragment-amp-PopWindow" class="headerlink" title="3.23 对话框(Dialog &amp; DialogFragment &amp; PopWindow)"></a>3.23 对话框(Dialog &amp; DialogFragment &amp; PopWindow)</h3><ul>
+<li>1.说说Android中对话框可以用哪些方式完成？</li>
+</ul>
+<h3 id="3-24-蓝牙"><a href="#3-24-蓝牙" class="headerlink" title="3.24 蓝牙"></a>3.24 蓝牙</h3><ul>
+<li>1.说说最新的蓝牙版本？新版本的特性是什么？</li>
+</ul>
+<h3 id="3-25-冷启动-amp-热启动"><a href="#3-25-冷启动-amp-热启动" class="headerlink" title="3.25 冷启动&amp;热启动"></a>3.25 冷启动&amp;热启动</h3><ul>
+<li>1.什么是冷启动 &amp; 什么是热启动 &amp; 它们的流程？</li>
+<li>2.如何优化冷启动？</li>
+<li>3.启动页白屏，黑屏，太慢如何解决？</li>
+</ul>
+<h3 id="3-26-悬浮窗"><a href="#3-26-悬浮窗" class="headerlink" title="3.26 悬浮窗"></a>3.26 悬浮窗</h3><ul>
+<li>1.在做悬浮窗的时候你遇到了什么困难(主要指悬浮窗权限适配)？</li>
+<li>2.如何制作一个悬浮窗？</li>
+</ul>
+<h3 id="3-27-Android版本"><a href="#3-27-Android版本" class="headerlink" title="3.27 Android版本"></a>3.27 Android版本</h3><ul>
+<li>1.最新的Android版本多少知道吗？有哪些特性</li>
+<li>2.说说更新较大的Android版本。</li>
+</ul>
+<h3 id="3-28-Android-Studio"><a href="#3-28-Android-Studio" class="headerlink" title="3.28 Android Studio"></a>3.28 Android Studio</h3><ul>
+<li>1.你现在比较常用Android Studio那个版本 &amp; 用的Gradle版本是多少？</li>
+<li>2.如何理解gradle?</li>
+<li>3.说说Android Studio中大致项目结构？</li>
+<li>4.混淆是什么 &amp; 为什么需要进行混淆 &amp; 混淆的原理 &amp; 为什么Java反射常常会和混淆冲突？</li>
+</ul>
+<h3 id="3-29-UI卡顿优化"><a href="#3-29-UI卡顿优化" class="headerlink" title="3.29 UI卡顿优化"></a>3.29 UI卡顿优化</h3><ul>
+<li>1.ANR是什么？导致原因有哪些？</li>
+<li>2.谈谈你项目中避免ANR的一些经验。</li>
+<li>3.分别说说Activity &amp; BroadcastReceiver &amp; Serice最长可耗时时间为多少？ </li>
+</ul>
+<h3 id="3-30-内存优化"><a href="#3-30-内存优化" class="headerlink" title="3.30 内存优化"></a>3.30 内存优化</h3><ul>
+<li>1.什么是OOM &amp; 什么是内存泄漏 &amp; 什么是内存抖动？</li>
+<li>2.谈谈你项目中内存优化的一些经验。</li>
+</ul>
+<h3 id="3-31-屏幕适配"><a href="#3-31-屏幕适配" class="headerlink" title="3.31 屏幕适配"></a>3.31 屏幕适配</h3><ul>
+<li>1.说说Android中一些屏幕单位。</li>
+<li>2.谈谈你项目中的一些屏幕适配的经验。</li>
+<li>3.今日头条的轻量级适配方案了解吗 &amp; 给我说说原理。</li>
+</ul>
+<h3 id="3-32-多渠道打包-amp-apk签名"><a href="#3-32-多渠道打包-amp-apk签名" class="headerlink" title="3.32 多渠道打包 &amp; apk签名"></a>3.32 多渠道打包 &amp; apk签名</h3><ul>
+<li>1.apk为什么需要签名？</li>
+<li>2.多渠道打包是什么 &amp; 有类似经验吗？</li>
+<li>3.简述多渠道打包及原理和常用操作？</li>
+</ul>
+<h3 id="3-33-项目架构"><a href="#3-33-项目架构" class="headerlink" title="3.33 项目架构"></a>3.33 项目架构</h3><ul>
+<li>1.说说你用过的项目架构？</li>
+<li>2.分别给我说说MVC,MVP,MVVM特点和区别。</li>
+<li>3.以登陆界面为例子,设计MVP架构。</li>
+<li>4.谈谈AndroidManifest.xml文件的理解。</li>
+<li>5.谈谈你对组件化架构的理解</li>
+</ul>
+<h3 id="3-34-Android前沿知识"><a href="#3-34-Android前沿知识" class="headerlink" title="3.34 Android前沿知识"></a>3.34 Android前沿知识</h3><ul>
+<li>1.谷歌新出的Flutter知道吗？</li>
+<li>2.谷歌新出的官方开发语言Kotlin了解吗 &amp; 和Java相比它有哪些特点。</li>
+<li>3.谈谈Kotlin中协程的认识？</li>
+<li>4.Jetpack组件用过吗?使用它的好处</li>
+<li>5.你会哪些跨平台UI框架？</li>
+<li>6.RN和Flutter区别是什么？</li>
+</ul>
+<h3 id="3-35-音视频开发-高薪"><a href="#3-35-音视频开发-高薪" class="headerlink" title="3.35 音视频开发(高薪)"></a>3.35 音视频开发(高薪)</h3><ul>
+<li>1.之前有过音视频开发经验吗 &amp; 说说用哪些开源架子开发的。</li>
+<li>2.FFmpeng了解过吗？</li>
+<li>3.Android中播放视频音频的方式有哪些？</li>
+<li>4.Android中播放网络地址视频有哪些出色的开源库？</li>
+<li>5.流媒体服务器了解吗？</li>
+<li>6.谈谈你对编码格式的理解。</li>
+<li>7.MediaPlayer和SoundPool的区别？</li>
+<li>8.视频硬解码和软解码的区别？</li>
+<li>9.MediaPlayer和SoundPool区别</li>
+</ul>
+<h3 id="3-36-热修复-amp-插件化"><a href="#3-36-热修复-amp-插件化" class="headerlink" title="3.36 热修复 &amp; 插件化"></a>3.36 热修复 &amp; 插件化</h3><ul>
+<li>1.Java类加载过程？</li>
+<li>2.了解哪些热修复框架 &amp; 使用过哪些 &amp; 说出它们的原理</li>
+<li>3.谈谈对 ClassLoader 的理解  </li>
+<li>4.双亲委托机制的好处  </li>
+<li>5.自定义 ClassLoader</li>
+<li>6.插件化为什么会出现，如何代码加载，资源加载，代理 Hook？</li>
+</ul>
+<h3 id="3-37-其它Android部分有关面试题"><a href="#3-37-其它Android部分有关面试题" class="headerlink" title="3.37 其它Android部分有关面试题"></a>3.37 其它Android部分有关面试题</h3><ul>
+<li>1.说说一个app的启动流程(从源码角度讲解)。</li>
+<li>2.你知道无论是Kotlin或者是Java,程序运行的主要入口都是main()方法，那么Android的main方法在哪里？</li>
+<li>3.Android Hock技术了解吗？</li>
+<li>4.简述Android中的加固和使用平台？</li>
+<li>5.谈谈你对Apk瘦身的经验？</li>
+<li>6.为什么子线程不能更新UI？</li>
+<li>7.你知道如何定位内存泄漏吗？</li>
+<li>8.说说System.exit(0),onDestory(),Activity.finish()的区别？</li>
+<li>9.在OnResume或者之前获取View的宽高为多少 &amp; 为什么？</li>
+<li>10.Art &amp; Dvm 虚拟机区别，特别是谈谈GC的区别。 </li>
+<li>11.说说你用的二维码框架 &amp; 有过优化经验吗？</li>
+<li>12.谈谈App多进程的好处 &amp; 缺点。</li>
+<li>13.说说AMS是怎么找到启动指定的Activity？</li>
+<li>14.View的getWidth和getMeasureWidth有啥区别？</li>
+<li>15.有插件化或者热修复经验吗？说说它的原理。</li>
+<li>16.断点续传了解吗？谈谈你是如何通过多线程实现断点续传的。</li>
+<li>17.给我谈谈你对SurfaceView的认识。</li>
+<li>18.什么情况下你会使用到ScrollView。</li>
+<li>19.低版本SDK如何使用高版本API？</li>
+<li>20.AlertDialog,PopWindow,Activity之间的区别？</li>
+<li>21.Application和Activity,Context的区别？</li>
+<li>22.谈谈Android中多线程通信方式？</li>
+<li>23.说说Android大体的架构图，试着画出来。</li>
+<li>24.知道SpareArray吗？</li>
+<li>25.Activity除了setContentView可以设置布局，还有其它方式吗？</li>
+<li>26.Android为每个应用程序分配的内存大小为多少？</li>
+<li>27.Android进程保活方案？</li>
+<li>28.谈谈Android系统安装apk的过程？</li>
+<li>29.Activity,Window,View三者的关系？</li>
+<li>30.ActivityThread,ActivityManagerService,WindowManagerService的工作原理？</li>
+<li>31.PackageManagerService的工作原理？</li>
+<li>32.PowerManagerService的工作原理？</li>
+<li>33.在桌面点击一个未启动的App的流程 &amp; 点击一个已启动的App的流程？</li>
+<li>34.Android中进程分为哪些种类？</li>
+<li>35.什么是埋点，懂点它的原理吗？</li>
+<li>36.进程和Application生命周期之间的关系？</li>
+<li>37.App相互唤醒的有哪些方式？</li>
+<li>38.Android中如何开启多进程？应用是否可以开启N个进程？</li>
+<li>39.谈谈消息推送的方式有哪些？</li>
+<li>40.谈谈你对Root权限的理解。</li>
+<li>41.谈谈项目如何进行国际化？</li>
+<li>42.谈谈你对Intent和IntentFilter的理解。</li>
+<li>43.一条最长的短信息约占多少byte？</li>
+<li>44.如何理解组件化设计思想？    </li>
+<li>45.如何判断app首次启动，切换至后台，后台切换至前台？</li>
+<li>46.简述下你平时如何对项目进行调优？</li>
+</ul>
+<h3 id="3-38-经验相关面试题"><a href="#3-38-经验相关面试题" class="headerlink" title="3.38 经验相关面试题"></a>3.38 经验相关面试题</h3><ul>
+<li>1.请至少说出5种常见的app奔溃的原因 &amp; 以及解决方案。    </li>
+<li>2.请说出你项目中用到的数据持久化技术有哪些？    </li>
+<li>3.在以往的项目中有没有特别难以解决的问题,最后如何解决的？    </li>
+<li>4.请至少例举出5种内存泄漏情况。    </li>
+<li>5.熟悉Monkey测试吗？单元测试呢？如何实现？</li>
+<li>6.如何区分app环境(测试环境 &amp; 开发环境)？</li>
+<li>7.平时采用什么方式调试后端的接口？</li>
+<li>8.说说你对开发app调试心得？</li>
+<li>9.使用过哪些性能优化工具？</li>
+<li>10.你如何区分app环境(debug &amp; release等)</li>
+</ul>
+<h3 id="3-39-安全-amp-性能优化"><a href="#3-39-安全-amp-性能优化" class="headerlink" title="3.39 安全 &amp; 性能优化"></a>3.39 安全 &amp; 性能优化</h3><ul>
+<li>1.你认为混淆的作用有哪些？</li>
+<li>2.app加固用过哪些 &amp; 加固的原理</li>
+<li>3.谈谈你的app性能优化心得(具体可以谈网路,内存,app瘦身,卡顿，布局优化等等)</li>
+</ul>
+<h3 id="3-40-Gradle"><a href="#3-40-Gradle" class="headerlink" title="3.40 Gradle"></a>3.40 Gradle</h3><ul>
+<li>1.gradle是什么？</li>
+<li>2.gradle是基于什么编程语言的？对它熟悉吗？</li>
+<li>3.gradle支持了Kotlin了，有用过吗？</li>
+<li>4.gradle能帮你做什么事情？你有自己自定义过吗？</li>
+</ul>
+<h2 id="4-移动UI框架部分-Flutter为主"><a href="#4-移动UI框架部分-Flutter为主" class="headerlink" title="4.移动UI框架部分(Flutter为主)"></a>4.移动UI框架部分(Flutter为主)</h2><blockquote>
+<p>待笔者总结</p>
+</blockquote>
+<h2 id="5-算法与数据结构部分"><a href="#5-算法与数据结构部分" class="headerlink" title="5.算法与数据结构部分"></a>5.算法与数据结构部分</h2><h3 id="5-1-复杂度分析"><a href="#5-1-复杂度分析" class="headerlink" title="5.1 复杂度分析"></a>5.1 复杂度分析</h3><ul>
+<li>1.什么是时间复杂度 &amp; 什么是空间复杂度？</li>
+<li>2.时间复杂度和空间复杂度之间存在什么联系？</li>
+</ul>
+<h3 id="5-2-数组"><a href="#5-2-数组" class="headerlink" title="5.2 数组"></a>5.2 数组</h3><ul>
+<li>1.谈谈你对数组的理解。</li>
+</ul>
+<h3 id="5-3-链表"><a href="#5-3-链表" class="headerlink" title="5.3 链表"></a>5.3 链表</h3><ul>
+<li>1.什么是单链表 &amp; 双向链表 &amp; 循环链表 &amp; 双向循环链表 &amp; 静态链表。</li>
+<li>2.反转一个链表有哪些方式？</li>
+<li>3.如何判断链表有环？</li>
+<li>4.用Java语言设计一个LinkedList。</li>
+</ul>
+<h3 id="5-4-堆"><a href="#5-4-堆" class="headerlink" title="5.4 堆"></a>5.4 堆</h3><ul>
+<li>1.如何理解堆？</li>
+</ul>
+<h3 id="5-5-栈"><a href="#5-5-栈" class="headerlink" title="5.5 栈"></a>5.5 栈</h3><ul>
+<li>1.什么是栈 &amp; 栈的特点是什么？</li>
+<li>2.什么是顺序栈 &amp; 链式栈？</li>
+<li>3.你有没有基于栈封装的业务类？</li>
+<li>4.你能用栈实现队列吗？</li>
+<li>5.如何实现浏览器前进和后退功能？</li>
+</ul>
+<h3 id="5-6-队列"><a href="#5-6-队列" class="headerlink" title="5.6 队列"></a>5.6 队列</h3><ul>
+<li>1.什么是队列 &amp; 队列的特点是什么？</li>
+<li>2.什么是优先队列？</li>
+<li>3.什么是双端队列 &amp; 阻塞队列?</li>
+<li>4.你能用队列实现栈吗？</li>
+</ul>
+<h3 id="5-7-散列表"><a href="#5-7-散列表" class="headerlink" title="5.7 散列表"></a>5.7 散列表</h3><ul>
+<li>1.什么是散列函数？</li>
+<li>2.什么是散列冲突？解决的方式有哪些？Java中的HashMap解决方式采用的哪一种？</li>
+<li>3.什么是散列表的动态扩容？</li>
+<li>4.什么是位图？</li>
+</ul>
+<h3 id="5-8-树"><a href="#5-8-树" class="headerlink" title="5.8 树"></a>5.8 树</h3><ul>
+<li>1.什么是二叉树？</li>
+<li>2.什么是先序遍历 &amp; 中序遍历 &amp; 后序遍历。</li>
+<li>3.什么是多路查找树？ </li>
+<li>4.什么是红黑树？</li>
+</ul>
+<h3 id="5-9-排序"><a href="#5-9-排序" class="headerlink" title="5.9 排序"></a>5.9 排序</h3><ul>
+<li>1.给我说说你会的排序 &amp; 复杂度如何？</li>
+<li>2.现在有10万条数据需要进行排序，你会选择什么排序？</li>
+</ul>
+<h3 id="5-10-查找"><a href="#5-10-查找" class="headerlink" title="5.10 查找"></a>5.10 查找</h3><ul>
+<li>1.说说你知道的查找算法 &amp; 复杂度如何？</li>
+</ul>
+<h3 id="5-11-递归-amp-回溯算法"><a href="#5-11-递归-amp-回溯算法" class="headerlink" title="5.11 递归&amp;回溯算法"></a>5.11 递归&amp;回溯算法</h3><ul>
+<li>1.什么是递归 &amp; 什么是回溯？</li>
+</ul>
+<h3 id="5-12-贪心算法"><a href="#5-12-贪心算法" class="headerlink" title="5.12 贪心算法"></a>5.12 贪心算法</h3><ul>
+<li>1.什么是贪心算法？</li>
+</ul>
+<h3 id="5-13-其它有关算法与数据结构的面试题"><a href="#5-13-其它有关算法与数据结构的面试题" class="headerlink" title="5.13 其它有关算法与数据结构的面试题"></a>5.13 其它有关算法与数据结构的面试题</h3><ul>
+<li>1.什么是图？可以解决一些什么问题？</li>
+<li>2.时针走一圈，时针分针重合几次？</li>
+<li>3.有一个不均匀的绳子烧完要1个小时，如何算出1小时15分钟？</li>
+<li>4.求1000以内的水仙花数以及40亿以内的水仙花数？</li>
+<li>5.数据怎么压缩，数据的安全。</li>
+<li>6.谈谈你对对称加密 &amp; 非对称加密的理解。</li>
+</ul>
+<h2 id="6-常用的开源库部分"><a href="#6-常用的开源库部分" class="headerlink" title="6.常用的开源库部分"></a>6.常用的开源库部分</h2><h3 id="6-1-异步通信"><a href="#6-1-异步通信" class="headerlink" title="6.1 异步通信"></a>6.1 异步通信</h3><ul>
+<li>1.RxJava用法 &amp; RxJava2用法 &amp; 原理 &amp;用到的设计模式？</li>
+<li>2.EventBus用法 &amp; 原理。</li>
+</ul>
+<h3 id="6-2-网络"><a href="#6-2-网络" class="headerlink" title="6.2 网络"></a>6.2 网络</h3><ul>
+<li>1.OkHttp用法 &amp; 源码分析。</li>
+<li>2.Retrofit用法 &amp; 源码分析。</li>
+<li>3.Volley用法 &amp; 缺点。</li>
+<li>4.OkHttp的请求分为哪2种？区别是什么？    </li>
+<li>5.谈谈Okhttp的分发器有什么作用？    </li>
+<li>6.谈谈OkHttp的5个内部拦截器的作用？    </li>
+<li>7.OkHttp的拦截器链了解吗？给我谈谈它    </li>
+<li>8.OkHttp的应用拦截器和网络拦截器是什么？分别说说它们的作用    </li>
+<li>9.OkHttp如何实现WebSocket？    </li>
+<li>10.Retrofit网络请求层用的什么？    </li>
+<li>11.Retrofit中使用了哪些设计模式？</li>
+</ul>
+<h3 id="6-3-依赖注入"><a href="#6-3-依赖注入" class="headerlink" title="6.3 依赖注入"></a>6.3 依赖注入</h3><ul>
+<li>1.ButterKnife用法 &amp; 原理。</li>
+<li>2.Dagger2用法 &amp; 原理。</li>
+<li>3.最新版本的ButterKnife用到是注解+反射还是注解+APT？</li>
+</ul>
+<h3 id="6-4-图片加载"><a href="#6-4-图片加载" class="headerlink" title="6.4 图片加载"></a>6.4 图片加载</h3><ul>
+<li>1.Glide用法 &amp; 原理。</li>
+<li>2.Picasso用法 &amp; 原理。</li>
+<li>3.Fresco用法 &amp; 原理。</li>
+<li>4.在使用Glide的时候with方法中传入Activity的上下文和Application的上下文有什么区别？    </li>
+<li>5.谈谈Glide中使用的LruCache算法？    </li>
+<li>6.Glide和Picasso的区别。    </li>
+<li>7.谈谈Glide的缓存策略。    </li>
+<li>8.当一个Activity退出时(执行了onDestory方法销毁了)，那么Glide如何正确监听Activity生命周期从而准确回收图片资源呢？    </li>
+<li>9.Glide为什么不会导致OOM呢？    </li>
+<li>10.手写简单的LRU算法代码。    </li>
+<li>11.Picasso中的tag有什么用处？    </li>
+<li>12.Picasso内部下载图片使用的网络库是什么？</li>
+</ul>
+<h3 id="6-5-数据库"><a href="#6-5-数据库" class="headerlink" title="6.5 数据库"></a>6.5 数据库</h3><ul>
+<li>1.GreenDao用法 &amp; 原理。</li>
+<li>2.LitePal用法 &amp; 原理。</li>
+<li>3.OrmLite用法 &amp; 原理。</li>
+<li>4.DBFlow用法 &amp; 原理。</li>
+<li>5.Realm用法 &amp; 原理。</li>
+<li>6.如果让你封装一个数据库框架,你会如何进行封装？</li>
+</ul>
+<h3 id="6-6-其它"><a href="#6-6-其它" class="headerlink" title="6.6 其它"></a>6.6 其它</h3><ul>
+<li>1.分享你觉得比较好用的开源库。</li>
+<li>2.自己有封装库吗？给我说说你是如何设计的？</li>
+<li>3.你是如何设计一个网络请求框架的？</li>
+<li>4.SDK开发和App开发有什么区别？</li>
+<li>5.现在有一个组件化项目,模块之间通信用EventBus有缺点为什么(指的是耦合性高，当然事件下沉可以解决，但此处不是这个意思) &amp; 解决方案？</li>
+</ul>
+<h2 id="7-计算机网络部分"><a href="#7-计算机网络部分" class="headerlink" title="7.计算机网络部分"></a>7.计算机网络部分</h2><ul>
+<li>1.给我介绍5层网络模型。试着说说https加密过程 &amp; 为什么https比http要安全？</li>
+<li>2.Http/Https协议工作在哪一层？IP协议工作在哪一层？应用层有哪些协议？</li>
+<li>3.TCP/UDP协议工作在哪一层？</li>
+<li>4.给我说说三次握手和四次挥手。</li>
+<li>5.什么是请求头 &amp; 响应头 ? 说说请求头中一些重要的字段。</li>
+<li>6.什么是Cookie &amp; Session &amp; Token。</li>
+<li>7.知道什么是心跳检测吗？</li>
+<li>8.Http和Https的区别？</li>
+<li>9.加密协议TLS/SSL加密过程是怎样的？</li>
+<li>10.什么是DNS &amp; 作用是什么 &amp;工作机制？</li>
+<li>11.浏览器访问一个url网址所经历的过程是什么？</li>
+<li>12.Socket是协议吗？WebSocket是协议吗？它们的区别是什么？</li>
+<li>13.Json解析方式有哪些？比较它们的优劣势。</li>
+<li>14.XML解析方式有哪些？比较它们的优劣势。</li>
+<li>15.http1.x &amp; http 2.0区别是什么？</li>
+<li>16.说说HTTP缓存的原理。</li>
+<li>17.如果有个100M大的文件，需要上传至服务器中，而服务器form表单最大只能上传2M,可以使用什么方法？</li>
+<li>18.说说你项目中即时通讯的方案有哪些？</li>
+<li>19.为什么是三次握手而不是两次,四次握手或者更多次呢？    </li>
+<li>20.用过哪些抓包工具？    </li>
+<li>21.讲讲你如何封装项目中的网络请求。    </li>
+<li>22.如何做断点续传？    </li>
+<li>23.如何下载文件 &amp; 上传文件？如果文件过大如何解决？    </li>
+<li>24.有Socket编程经验吗?谈谈Socket编程    </li>
+<li>25.你知道的消息推送方案有哪些？说说自己实现过哪些？怎么实现的？    </li>
+<li>26.短轮询 &amp; 长轮询 &amp; 区别 &amp; 优缺点 &amp; 有哪些能替代轮询的良好方案。    </li>
+<li>27.谈谈Http缓存问题，在头部中有哪些关于缓存的重要字段，说说它的作用。</li>
+<li>28.http(s)请求数据过慢可以从哪些方面进行优化(主要考察网络请求过程的理解)</li>
+</ul>
+
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81Java%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">一、Java部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3"><span class="nav-number">1.1.</span> <span class="nav-text">1 操作系统相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">1 什么是操作系统？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">2 什么是线程，什么是进程？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-JDK-amp-JVM-amp-JRE"><span class="nav-number">1.2.</span> <span class="nav-text">2 JDK&amp;JVM&amp;JRE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JDK-amp-JVM-amp-JRE%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1 JDK &amp; JVM &amp; JRE分别是什么以及它们的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%B8%BA%E4%BB%80%E4%B9%88Java%E5%8F%AF%E4%BB%A5%E8%B7%A8%E5%B9%B3%E5%8F%B0%EF%BC%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2 解释一下为什么Java可以跨平台？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-amp-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.3.</span> <span class="nav-text">3 面向过程 &amp; 面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B-amp-%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-amp-%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">1 什么是面向过程 &amp; 什么是面向对象 &amp; 区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%99%E6%88%91%E8%AF%B4%E8%AF%B4Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%89%B9%E5%BE%81%E4%BB%A5%E5%8F%8A%E8%AE%B2%E8%AE%B2%E4%BD%A0%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%87%B8%E6%98%BE%E8%BF%99%E4%BA%9B%E7%89%B9%E5%BE%81%E7%9A%84%E7%BB%8F%E9%AA%8C%E3%80%82"><span class="nav-number">1.3.2.</span> <span class="nav-text">2 给我说说Java面向对象的特征以及讲讲你代码中凸显这些特征的经验。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E8%BD%BD-amp-%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E5%86%99-amp-%E5%8C%BA%E5%88%AB%E3%80%82"><span class="nav-number">1.3.3.</span> <span class="nav-text">3 什么是重载 &amp; 什么是重写 &amp; 区别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9this%E5%92%8Csuper%E7%9A%84%E8%AE%A4%E8%AF%86%E3%80%82"><span class="nav-number">1.3.4.</span> <span class="nav-text">4 谈谈你对this和super的认识。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82"><span class="nav-number">1.3.5.</span> <span class="nav-text">5 接口和抽象类的区别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%E5%92%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E8%83%BD%E8%A2%AB%E7%BB%A7%E6%89%BF%E5%90%97%EF%BC%9F%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%8F%88%E6%98%AF%E5%90%A6%E8%83%BD%E8%A2%AB%E9%87%8D%E5%86%99%E5%91%A2%EF%BC%9F"><span class="nav-number">1.3.6.</span> <span class="nav-text">6 静态属性和静态方法能被继承吗？静态方法又是否能被重写呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%BB%99%E6%88%91%E8%AF%B4%E8%AF%B4%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6%E7%89%B9%E6%80%A7%E3%80%82"><span class="nav-number">1.3.7.</span> <span class="nav-text">7 给我说说权限修饰符特性。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%BB%99%E6%88%91%E8%B0%88%E8%B0%88Java%E4%B8%AD%E7%9A%84%E5%86%85%E9%83%A8%E7%B1%BB%E3%80%82"><span class="nav-number">1.3.8.</span> <span class="nav-text">8 给我谈谈Java中的内部类。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E9%97%AD%E5%8C%85%E5%92%8C%E5%86%85%E9%83%A8%E7%B1%BB%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.9.</span> <span class="nav-text">9 闭包和内部类的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Java%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%EF%BC%88%E7%BB%86%E7%9C%8B%EF%BC%89"><span class="nav-number">1.3.10.</span> <span class="nav-text">10 Java多态的实现机制是什么？（细看）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E8%AE%A4%E8%AF%86%EF%BC%9F"><span class="nav-number">1.3.11.</span> <span class="nav-text">11 谈谈你对对象生命周期的认识？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-static%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="nav-number">1.3.12.</span> <span class="nav-text">12 static关键字的作用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-final%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.3.13.</span> <span class="nav-text">13 final关键字的作用?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-amp-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">4 八大基本数据类型&amp;引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AF%B4%E8%AF%B4Java%E4%B8%AD%E7%9A%84%E5%85%AB%E5%A4%A7%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B-amp-%E5%86%85%E5%AD%98%E4%B8%AD%E5%8D%A0%E6%9C%89%E7%9A%84%E5%AD%97%E8%8A%82-amp-%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">1 说说Java中的八大基本类型 &amp; 内存中占有的字节 &amp; 什么是引用类型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8B%86%E7%AE%B1-amp-%E8%A3%85%E7%AE%B1%EF%BC%8C%E8%83%BD%E7%BB%99%E6%88%91%E4%B8%BE%E6%A0%97%E5%AD%90%E5%90%97%EF%BC%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">2 什么是拆箱 &amp; 装箱，能给我举栗子吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%95%B0%E7%BB%84"><span class="nav-number">1.5.</span> <span class="nav-text">5 数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%83%BD%E8%AF%B4%E8%AF%B4%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%8A%E6%98%AF%E6%80%8E%E4%B9%88%E5%AD%98%E5%82%A8%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-number">1.5.1.</span> <span class="nav-text">1 能说说多维数组在内存上是怎么存储的吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%A0%E5%AF%B9%E6%95%B0%E7%BB%84%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E8%BF%87%E5%90%97%EF%BC%9F%E8%AF%B4%E8%AF%B4%E5%B0%81%E8%A3%85%E4%BA%86%E4%BB%80%E4%B9%88-TODO"><span class="nav-number">1.5.2.</span> <span class="nav-text">2 你对数组二次封装过吗？说说封装了什么(TODO)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Java%E5%BC%82%E5%B8%B8"><span class="nav-number">1.6.</span> <span class="nav-text">6 Java异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AF%B4%E8%AF%B4Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E4%B8%BB%E8%A6%81%E7%94%A8%E6%9D%A5%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84-amp-%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%EF%BC%9F"><span class="nav-number">1.6.1.</span> <span class="nav-text">1 说说Java异常体系主要用来干什么的 &amp; 异常体系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Error%E5%92%8CException%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.6.2.</span> <span class="nav-text">2 Error和Exception的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AF%B4%E8%AF%B4%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E5%92%8C%E9%9D%9E%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.6.3.</span> <span class="nav-text">3 说说运行时异常和非运行时异常的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E5%BC%82%E5%B8%B8%EF%BC%9F"><span class="nav-number">1.6.4.</span> <span class="nav-text">4 如何自定义一个异常？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-throw%E5%92%8Cthrows-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.6.5.</span> <span class="nav-text">5 throw和throws 的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-try-catch-finally-%E5%8F%AF%E4%BB%A5%E6%B2%A1%E6%9C%89finally%E5%90%97%EF%BC%9F"><span class="nav-number">1.6.6.</span> <span class="nav-text">6 try{}catch{}finally{}可以没有finally吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-finally%E8%AF%AD%E5%9D%97%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%EF%BC%9F"><span class="nav-number">1.6.7.</span> <span class="nav-text">7 finally语块有什么特点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-return%E5%9C%A8try-catch-finally-%E4%B8%AD%E6%89%A7%E8%A1%8C%E5%85%B7%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A7%84%E5%88%99%EF%BC%9F"><span class="nav-number">1.6.8.</span> <span class="nav-text">8 return在try{}catch{}finally{}中执行具有哪些规则？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E7%BB%99%E6%88%91%E4%BE%8B%E4%B8%BE%E8%87%B3%E5%B0%915%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-number">1.6.9.</span> <span class="nav-text">9 给我例举至少5个常见的运行时异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E9%9B%86%E5%90%88-%E5%AE%B9%E5%99%A8"><span class="nav-number">1.7.</span> <span class="nav-text">7 集合(容器)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AF%B4%E8%AF%B4Java%E4%B8%AD%E9%9B%86%E5%90%88%E7%9A%84%E6%A1%86%E6%9E%B6%EF%BC%9F"><span class="nav-number">1.7.1.</span> <span class="nav-text">1 说说Java中集合的框架？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Collection-amp-Map%E5%8C%BA%E5%88%AB"><span class="nav-number">1.7.2.</span> <span class="nav-text">2 Collection &amp; Map区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%B8%B8%E7%94%A8%E7%9A%84%E9%9B%86%E5%90%88-amp-%E5%AE%83%E4%BB%AC%E5%BA%95%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-amp-%E4%BC%98%E7%BC%BA%E7%82%B9-amp-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E3%80%82"><span class="nav-number">1.7.3.</span> <span class="nav-text">3 谈谈你常用的集合 &amp; 它们底层的实现方式 &amp; 优缺点 &amp; 使用场景。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Map%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.7.4.</span> <span class="nav-text">4 Map的遍历方式有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BB%99%E6%88%91%E8%AF%B4%E8%AF%B4ArrayList%E7%9A%84%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6"><span class="nav-number">1.7.5.</span> <span class="nav-text">5 给我说说ArrayList的扩容机制.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B1%E6%8B%B7%E8%B4%9D-amp-%E6%B5%85%E6%8B%B7%E8%B4%9D-amp-%E5%A6%82%E4%BD%95%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%80%E4%B8%AAList%E9%9B%86%E5%90%88"><span class="nav-number">1.7.6.</span> <span class="nav-text">6 什么是深拷贝 &amp; 浅拷贝 &amp; 如何深拷贝一个List集合.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Set%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%83%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7%E7%9A%84%E3%80%82"><span class="nav-number">1.7.7.</span> <span class="nav-text">7 Set是如何确保它的唯一性的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%BD%A0%E8%A7%89%E5%BE%97HashMap%E7%9A%84%E5%85%83%E7%B4%A0%E9%A1%BA%E5%BA%8F%E5%92%8C%E4%BB%80%E4%B9%88%E6%9C%89%E5%85%B3%EF%BC%9F"><span class="nav-number">1.7.8.</span> <span class="nav-text">8 你觉得HashMap的元素顺序和什么有关？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-Java%E4%B8%ADHashMap%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%93%88%E5%B8%8C%E7%A2%B0%E6%92%9E%E7%9A%84%EF%BC%9F"><span class="nav-number">1.7.9.</span> <span class="nav-text">9 Java中HashMap如何解决哈希碰撞的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-ConcurrentHashMap%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AE%E7%9A%84%EF%BC%9F"><span class="nav-number">1.7.10.</span> <span class="nav-text">10 ConcurrentHashMap如何实现并发访问的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E8%B0%88%E8%B0%88Java%E9%9B%86%E5%90%88%E4%B8%AD%E9%82%A3%E4%BA%9B%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88-amp-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%82"><span class="nav-number">1.7.11.</span> <span class="nav-text">11 谈谈Java集合中那些线程安全的集合 &amp; 实现原理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E8%AF%B4%E8%AF%B4%E6%9C%89%E5%93%AA%E4%BA%9B%E9%9B%86%E5%90%88%E8%83%BD%E5%8A%A0%E5%85%A5null-%E5%93%AA%E4%BA%9B%E4%B8%8D%E8%83%BD%E5%8A%A0%E5%85%A5null-%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.7.12.</span> <span class="nav-text">12 说说有哪些集合能加入null,哪些不能加入null,为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E8%AF%B4%E8%AF%B4LinkedHashMap%E5%8E%9F%E7%90%86%E3%80%82"><span class="nav-number">1.7.13.</span> <span class="nav-text">13 说说LinkedHashMap原理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Collection-%E5%92%8C-Collections%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.7.14.</span> <span class="nav-text">14 Collection 和 Collections的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E6%AF%94%E8%BE%83%E4%B8%80%E4%B8%8BArrayMap%E5%92%8CHashMap%E3%80%82"><span class="nav-number">1.7.15.</span> <span class="nav-text">15 比较一下ArrayMap和HashMap。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E8%AF%B4%E8%AF%B4HashMap%E7%9A%84%E5%8E%9F%E7%90%86%E3%80%82"><span class="nav-number">1.7.16.</span> <span class="nav-text">16 说说HashMap的原理。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0%E5%BC%80%E6%94%BE%E5%9C%B0%E5%9D%80%E6%B3%95-%E5%86%8D%E6%95%A3%E5%88%97%E6%B3%95"><span class="nav-number">1.7.16.0.1.</span> <span class="nav-text">①开放地址法(再散列法)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1%E5%86%8D%E5%93%88%E5%B8%8C%E6%B3%95Rehash"><span class="nav-number">1.7.16.0.2.</span> <span class="nav-text">②再哈希法Rehash</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A2%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95%EF%BC%88%E6%8B%89%E9%93%BE%E6%B3%95%EF%BC%8CJava%E4%B8%AD%E9%BB%98%E8%AE%A4%E5%BA%94%E8%AF%A5%E7%94%A8%E7%9A%84%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%EF%BC%89"><span class="nav-number">1.7.16.0.3.</span> <span class="nav-text">③链地址法（拉链法，Java中默认应该用的这个方法）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E5%89%96%E6%9E%90ArrayList-LinkedList"><span class="nav-number">1.7.17.</span> <span class="nav-text">17 从源码角度剖析ArrayList,LinkedList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-%E4%BD%A0%E5%A6%82%E4%BD%95%E7%9C%8B%E4%BB%A3Java-8%E4%B8%ADHashMap%E5%BC%95%E5%85%A5%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9F"><span class="nav-number">1.7.18.</span> <span class="nav-text">18 你如何看代Java 8中HashMap引入红黑树？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.8.</span> <span class="nav-text">8 线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%EF%BC%9F%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%E3%80%82"><span class="nav-number">1.8.1.</span> <span class="nav-text">1 什么是线程？能解决什么问题。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Java%E4%B8%AD%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%842%E7%A7%8D%E6%96%B9%E5%BC%8F-amp-%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.8.2.</span> <span class="nav-text">2 Java中创建线程的2种方式 &amp; 区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BB%99%E6%88%91%E8%AF%B4%E8%AF%B4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%82"><span class="nav-number">1.8.3.</span> <span class="nav-text">3 给我说说线程的生命周期。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BA%BF%E7%A8%8B%E6%AD%BB%E9%94%81%E7%9A%84%E5%8E%9F%E5%9B%A0-amp-%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90-amp-%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%E3%80%82"><span class="nav-number">1.8.4.</span> <span class="nav-text">4 线程死锁的原因 &amp; 举个栗子 &amp; 如何避免死锁。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Synchronized%E6%94%BE%E5%9C%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%92%8C%E9%9D%9E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8A%E7%9A%84%E9%94%81%E5%AF%B9%E8%B1%A1%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.8.5.</span> <span class="nav-text">5 Synchronized放在静态方法和非静态方法上的锁对象分别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%A6%82%E4%BD%95%E5%81%9C%E6%AD%A2%E6%8E%89%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.8.6.</span> <span class="nav-text">6 如何停止掉一个线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%BB%99%E6%88%91%E8%AF%B4%E8%AF%B4%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E7%A7%8D%E7%B1%BB-amp-%E7%89%B9%E7%82%B9-amp-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-amp-%E5%B9%B3%E6%97%B6%E5%BD%93%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B%E3%80%82"><span class="nav-number">1.8.7.</span> <span class="nav-text">7 给我说说线程池的种类 &amp; 特点 &amp; 内部原理 &amp; 平时当中使用案例。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%BB%99%E6%88%91%E8%B0%88%E8%B0%88%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E7%9A%84%EF%BC%9F"><span class="nav-number">1.8.8.</span> <span class="nav-text">8 给我谈谈你是如何保证线程数据安全问题的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-wait-%E5%92%8Csleep-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.8.9.</span> <span class="nav-text">9 wait()和sleep()的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%AC%E5%B9%B3%E9%94%81-amp-%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81-amp-%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.8.10.</span> <span class="nav-text">10 什么是公平锁&amp;非公平锁&amp;区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%BB%99%E6%88%91%E8%AE%B2%E8%AE%B2%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-number">1.8.11.</span> <span class="nav-text">11 给我讲讲线程间通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-volatile%E5%85%B3%E9%94%AE%E5%AD%97%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%9A%84%EF%BC%9F%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.8.12.</span> <span class="nav-text">12 volatile关键字是如何使用的？原理是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E8%AF%B4%E8%AF%B4%E4%BD%BF%E7%94%A85%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%8E%BB%E8%AE%A1%E7%AE%97%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E4%B9%8B%E5%92%8C%E7%9A%84%E6%80%9D%E8%B7%AF%E3%80%82"><span class="nav-number">1.8.13.</span> <span class="nav-text">13 说说使用5个线程去计算一个数组之和的思路。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E8%B0%88%E8%B0%88%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.8.14.</span> <span class="nav-text">14 谈谈线程阻塞的原因有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9notify%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-number">1.8.15.</span> <span class="nav-text">15 谈谈你对notify的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E4%BD%A0%E8%A7%89%E5%BE%97Lock%E5%92%8CSynchronized%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.8.16.</span> <span class="nav-text">16 你觉得Lock和Synchronized的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9ReentrantLock%E7%9A%84%E8%AE%A4%E8%AF%86%E3%80%82"><span class="nav-number">1.8.17.</span> <span class="nav-text">17 谈谈你对ReentrantLock的认识。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-%E8%B0%83%E7%94%A8run-%E5%92%8Cstart-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.8.18.</span> <span class="nav-text">18 调用run()和start()的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-transient%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%94%A8%E6%B3%95-amp-%E4%BD%9C%E7%94%A8-amp-%E5%8E%9F%E7%90%86%E3%80%82"><span class="nav-number">1.8.19.</span> <span class="nav-text">19 transient关键字的用法 &amp; 作用 &amp; 原理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-ThreadPoolExecutor%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%AD%96%E7%95%A5%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.8.20.</span> <span class="nav-text">20 ThreadPoolExecutor的工作策略有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-ThreadLocal%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F%E8%AF%B4%E8%AF%B4%E5%8E%9F%E7%90%86%E3%80%82"><span class="nav-number">1.8.21.</span> <span class="nav-text">21 ThreadLocal了解吗？说说原理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E6%9D%83%E8%A1%A1%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%80%A7%E8%83%BD%E3%80%82"><span class="nav-number">1.8.22.</span> <span class="nav-text">22 权衡多线程的性能。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5%EF%BC%8C%E9%98%BB%E5%A1%9E%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E3%80%82"><span class="nav-number">1.8.23.</span> <span class="nav-text">23 如何理解同步和异步，阻塞和非阻塞。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E6%AF%94%E8%BE%83%E4%B8%80%E4%B8%8B%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%8D%8F%E7%A8%8B%E3%80%82"><span class="nav-number">1.8.24.</span> <span class="nav-text">24 比较一下线程和协程。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E8%AE%B2%E8%AE%B2%E4%BD%A0%E5%AF%B9Thread%E7%B1%BB%E4%B8%ADrun%E6%96%B9%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%82"><span class="nav-number">1.8.25.</span> <span class="nav-text">25 从源码角度讲讲你对Thread类中run方法的理解。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-%E8%B0%88%E8%B0%88Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%82"><span class="nav-number">1.8.26.</span> <span class="nav-text">26 谈谈Java内存模型。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E4%B8%A4%E6%AC%A1%E8%B0%83%E7%94%A8Thread%E5%AF%B9%E8%B1%A1%E7%9A%84start%E6%96%B9%E6%B3%95%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.8.27.</span> <span class="nav-text">27 两次调用Thread对象的start方法会发生什么？为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-Thread%E7%9A%84sleep%E6%96%B9%E6%B3%95%E4%BC%9A%E6%B8%85%E9%99%A4%E4%B8%AD%E6%96%AD%E7%9A%84%E7%8A%B6%E6%80%81%E5%90%97%EF%BC%9F"><span class="nav-number">1.8.28.</span> <span class="nav-text">28 Thread的sleep方法会清除中断的状态吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E7%9A%84%E6%96%B9%E6%B3%95wait-notify-notifyAll%E8%A2%AB%E5%AE%9A%E4%B9%89%E4%BA%8EObject%E4%B8%AD%EF%BC%8C%E8%80%8Csleep%E6%96%B9%E6%B3%95%E8%A2%AB%E5%AE%9A%E4%B9%89%E5%9C%A8Thread%E7%B1%BB%E4%B8%AD%EF%BC%9F"><span class="nav-number">1.8.29.</span> <span class="nav-text">29 为什么线程通信的方法wait,notify,notifyAll被定义于Object中，而sleep方法被定义在Thread类中？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E8%AF%B4%E8%AF%B4Thread%E7%B1%BB%E4%B8%AD%E6%8F%90%E4%BE%9B%E7%9A%84getState-%E6%96%B9%E6%B3%95%E4%BD%9C%E7%94%A8%EF%BC%8C%E7%84%B6%E5%90%8E%E8%AF%B4%E8%AF%B4%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BB%A5%E5%8F%8A%E8%BD%AC%E6%8D%A2%E8%BF%87%E7%A8%8B%E3%80%82"><span class="nav-number">1.8.30.</span> <span class="nav-text">30 说说Thread类中提供的getState()方法作用，然后说说线程的状态有哪些以及转换过程。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E7%94%A8%E8%87%B3%E5%B0%912%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%89%8B%E5%86%99%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%E4%BB%A3%E7%A0%81%E3%80%82"><span class="nav-number">1.8.31.</span> <span class="nav-text">31 用至少2种方式手写生产者消费者模式代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-interrupted%E5%92%8CisInterrupted%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.8.32.</span> <span class="nav-text">32 interrupted和isInterrupted方法的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E5%88%86%E5%88%AB%E8%AE%B2%E8%AE%B2JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-Java%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E3%80%82"><span class="nav-number">1.8.33.</span> <span class="nav-text">33 分别讲讲JVM内存结构,Java内存模型,Java对象模型。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E4%BB%80%E4%B9%88%E6%98%AFhappens-before-%E5%AE%83%E7%9A%84%E8%A7%84%E5%88%99%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.8.34.</span> <span class="nav-text">34 什么是happens-before?它的规则有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-%E4%BB%80%E4%B9%88%E6%98%AFJMM-%E8%B0%88%E8%B0%88%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AD%98%E5%92%8C%E4%B8%BB%E5%86%85%E5%AD%98%E7%9A%84%E5%85%B3%E7%B3%BB%E3%80%82"><span class="nav-number">1.8.35.</span> <span class="nav-text">35 什么是JMM?谈谈工作内存和主内存的关系。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36-Java%E9%87%8D%E6%8E%92%E5%BA%8F%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F%E8%B0%88%E8%B0%88%E9%87%8D%E6%8E%92%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%83%85%E5%86%B5%E3%80%82"><span class="nav-number">1.8.36.</span> <span class="nav-text">36 Java重排序了解吗？谈谈重排序的3种情况。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#37-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%98%E5%9C%A8%E5%8F%AF%E8%A7%81%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%9F%E6%80%8E%E6%A0%B7%E8%A7%A3%E5%86%B3%E5%8F%AF%E8%A7%81%E6%80%A7%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">1.8.37.</span> <span class="nav-text">37 什么是可见性？为什么存在可见性问题？怎样解决可见性带来的问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-%E7%AE%A1%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E8%B0%88%E8%B0%88%E5%AE%83%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E3%80%82"><span class="nav-number">1.8.38.</span> <span class="nav-text">38 管程是什么？谈谈它的重要性。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%B3%9B%E5%9E%8B"><span class="nav-number">1.9.</span> <span class="nav-text">9 泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%9B%E5%9E%8B%EF%BC%9F%E8%83%BD%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">1.9.1.</span> <span class="nav-text">1 什么是泛型？能解决什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AF%B4%E8%AF%B4Java%E4%B8%AD%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-number">1.9.2.</span> <span class="nav-text">2 说说Java中泛型的工作机制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9C%A8%E6%B3%9B%E5%9E%8B%E7%A7%8Dextends%E5%92%8Csuper%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.9.3.</span> <span class="nav-text">3 在泛型种extends和super关键字的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%AF%94%E8%BE%83%E4%B8%80%E4%B8%8B%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B%E5%92%8CJava%E6%B3%9B%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB%E3%80%82"><span class="nav-number">1.9.4.</span> <span class="nav-text">4 比较一下其它语言中的泛型和Java泛型的区别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%9C%A8Java%E4%B8%ADList-lt-A-gt-%E5%92%8CList-lt-B-gt-%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BF%98%E6%98%AF%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.9.5.</span> <span class="nav-text">5 在Java中List&lt; A &gt;和List&lt; B &gt;是一样的类型还是不一样的类型？为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BD%A0%E5%8F%AF%E4%BB%A5%E4%BE%8B%E4%B8%BE%E4%B8%80%E4%BA%9B%E8%87%AA%E5%B7%B1%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B%E7%9A%84%E6%A0%97%E5%AD%90%E5%90%97%EF%BC%9F"><span class="nav-number">1.9.6.</span> <span class="nav-text">6 你可以例举一些自己使用泛型的栗子吗？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-10-%E5%8F%8D%E5%B0%84"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-12-%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.10.1.</span> <span class="nav-text">1.12 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-13-Socket%E7%BC%96%E7%A8%8B"><span class="nav-number">1.10.2.</span> <span class="nav-text">1.13 Socket编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-14-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.10.3.</span> <span class="nav-text">1.14 设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-15-JVM%E7%9B%B8%E5%85%B3"><span class="nav-number">1.10.4.</span> <span class="nav-text">1.15 JVM相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-16-%E9%AB%98%E7%BA%A7Java%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.10.5.</span> <span class="nav-text">1.16 高级Java知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-17-%E5%85%B6%E5%AE%83Java%E9%83%A8%E5%88%86%E6%9C%89%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.10.6.</span> <span class="nav-text">1.17 其它Java部分有关面试题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Android-%E9%83%A8%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">2.Android 部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Activity"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Activity%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.Activity是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%B8%E5%9E%8B%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84Activity%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.典型情况下的Activity生命周期？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%BC%82%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-amp-%E6%95%B0%E6%8D%AE%E5%A6%82%E4%BD%95%E4%BF%9D%E5%AD%98%E5%92%8C%E6%81%A2%E5%A4%8D%EF%BC%9F"><span class="nav-number">2.1.3.</span> <span class="nav-text">3.异常情况下的Activity的生命周期 &amp; 数据如何保存和恢复？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BB%8EActivity-A%E8%B7%B3%E8%BD%AC%E5%88%B0Activity-B%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E7%82%B9%E5%87%BBback%E6%8C%89%E9%94%AE%E4%B9%8B%E5%90%8E%EF%BC%8C%E5%AE%83%E4%BB%AC%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.1.4.</span> <span class="nav-text">4.从Activity A跳转到Activity B之后，然后再点击back按键之后，它们的生命周期调用流程是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%A6%82%E4%BD%95%E7%BB%9F%E8%AE%A1Activity%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%97%B4%EF%BC%9F"><span class="nav-number">2.1.5.</span> <span class="nav-text">5.如何统计Activity的工作时间？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%BB%99%E6%88%91%E8%AF%B4%E8%AF%B4Activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F-amp-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E3%80%82"><span class="nav-number">2.1.6.</span> <span class="nav-text">6.给我说说Activity的启动模式 &amp; 使用场景。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E5%85%B3%E6%8E%89%E5%BA%94%E7%94%A8%E6%89%80%E6%9C%89Activity-amp-%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%E5%85%B3%E6%8E%89%E6%8C%87%E5%AE%9A%E7%9A%84Activity%EF%BC%9F"><span class="nav-number">2.1.7.</span> <span class="nav-text">7.如何在任意位置关掉应用所有Activity &amp; 如何在任意位置关掉指定的Activity？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-Activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B-%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E8%A7%A3%E6%9E%90-%EF%BC%9F"><span class="nav-number">2.1.8.</span> <span class="nav-text">8.Activity的启动流程(从源码角度解析)？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E5%85%B6%E5%AE%83%E5%BA%94%E7%94%A8%E7%9A%84Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E6%9E%90%E3%80%82"><span class="nav-number">2.1.9.</span> <span class="nav-text">9.启动一个其它应用的Activity的生命周期分析。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Activity%E4%BB%BB%E5%8A%A1%E6%A0%88%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E7%94%A8%E5%88%B0%E5%AE%83%E5%90%97%EF%BC%9F%E8%AF%B4%E7%BB%99%E6%88%91%E5%90%AC%E5%90%AC"><span class="nav-number">2.1.10.</span> <span class="nav-text">10.Activity任务栈是什么？在项目中有用到它吗？说给我听听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8BActivity%E4%B8%8D%E8%B5%B0onDestory"><span class="nav-number">2.1.11.</span> <span class="nav-text">11.什么情况下Activity不走onDestory?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8BActivity%E4%BC%9A%E5%8D%95%E7%8B%AC%E6%89%A7%E8%A1%8ConPause"><span class="nav-number">2.1.12.</span> <span class="nav-text">12.什么情况下Activity会单独执行onPause?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-a-gt-b-gt-c%E7%95%8C%E9%9D%A2%EF%BC%8C%E5%85%B6%E4%B8%ADb%E6%98%AFSingleInstance%E7%9A%84%EF%BC%8C%E9%82%A3%E4%B9%88c%E7%95%8C%E9%9D%A2%E7%82%B9back%E8%BF%94%E5%9B%9Ea%E7%95%8C%E9%9D%A2%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.1.13.</span> <span class="nav-text">13.a-&gt;b-&gt;c界面，其中b是SingleInstance的，那么c界面点back返回a界面，为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AAActivity%E5%BC%B9%E5%87%BA%E4%B8%80%E4%B8%AADialog-%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AAAcitvity%E4%BC%9A%E5%9B%9E%E8%B0%83%E5%93%AA%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E5%91%A2%EF%BC%9F"><span class="nav-number">2.1.14.</span> <span class="nav-text">14.如果一个Activity弹出一个Dialog,那么这个Acitvity会回调哪些生命周期函数呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-Activity%E4%B9%8B%E9%97%B4%E5%A6%82%E4%BD%95%E9%80%9A%E4%BF%A1-amp-Activity%E5%92%8CFragment%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1-amp-Activity%E5%92%8CService%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1%EF%BC%9F"><span class="nav-number">2.1.15.</span> <span class="nav-text">15.Activity之间如何通信 &amp; Activity和Fragment之间通信 &amp; Activity和Service之间通信？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E8%AF%B4%E8%AF%B4Activity%E6%A8%AA%E7%AB%96%E5%B1%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%82"><span class="nav-number">2.1.16.</span> <span class="nav-text">16.说说Activity横竖屏切换的生命周期。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E5%89%8D%E5%8F%B0%E5%88%87%E6%8D%A2%E5%88%B0%E5%90%8E%E5%8F%B0%EF%BC%8C%E7%84%B6%E5%90%8E%E5%9C%A8%E5%9B%9E%E5%88%B0%E5%89%8D%E5%8F%B0%E6%97%B6Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%82"><span class="nav-number">2.1.17.</span> <span class="nav-text">17.前台切换到后台，然后在回到前台时Activity的生命周期。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-%E4%B8%8B%E6%8B%89%E7%8A%B6%E6%80%81%E6%A0%8F%E6%97%B6Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="nav-number">2.1.18.</span> <span class="nav-text">18.下拉状态栏时Activity的生命周期？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-Activity%E4%B8%8EFragment%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%AF%94%E8%BE%83%EF%BC%9F"><span class="nav-number">2.1.19.</span> <span class="nav-text">19.Activity与Fragment的生命周期比较？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E4%BA%86%E8%A7%A3%E5%93%AA%E4%BA%9BActivity%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%87%E8%AE%B0%E4%BD%8DFlags%EF%BC%9F"><span class="nav-number">2.1.20.</span> <span class="nav-text">20.了解哪些Activity常用的标记位Flags？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E8%B0%88%E8%B0%88%E9%9A%90%E5%BC%8F%E5%90%AF%E5%8A%A8%E5%92%8C%E6%98%BE%E7%A4%BA%E5%90%AF%E5%8A%A8Activity%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">2.1.21.</span> <span class="nav-text">21.谈谈隐式启动和显示启动Activity的方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-Activity%E7%94%A8Intent%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E5%92%8CBundle%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8HashMap%E5%91%A2%EF%BC%9F"><span class="nav-number">2.1.22.</span> <span class="nav-text">22.Activity用Intent传递数据和Bundle传递数据的区别？为什么不用HashMap呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E5%9C%A8%E9%9A%90%E5%BC%8F%E5%90%AF%E5%8A%A8%E4%B8%ADIntent%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AAaction-%E5%A4%9A%E4%B8%AAcategory%E5%90%97-amp-%E9%A1%BA%E4%BE%BF%E8%AE%B2%E8%AE%B2%E5%AE%83%E4%BB%AC%E7%9A%84%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99%EF%BC%9F"><span class="nav-number">2.1.23.</span> <span class="nav-text">23.在隐式启动中Intent可以设置多个action,多个category吗 &amp; 顺便讲讲它们的匹配规则？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-Activity%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E4%B8%BA%E5%AF%B9%E8%AF%9D%E6%A1%86%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%90%97%EF%BC%9F"><span class="nav-number">2.1.24.</span> <span class="nav-text">24.Activity可以设置为对话框的形式吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E5%A6%82%E4%BD%95%E7%BB%99Activity%E8%AE%BE%E7%BD%AE%E8%BF%9B%E5%85%A5%E5%92%8C%E9%80%80%E5%87%BA%E7%9A%84%E5%8A%A8%E7%94%BB%EF%BC%9F"><span class="nav-number">2.1.25.</span> <span class="nav-text">25.如何给Activity设置进入和退出的动画？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-Activity%E4%BD%BF%E7%94%A8Intent%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E6%98%AF%E5%90%A6%E6%9C%89%E9%99%90%E5%88%B6-amp-%E5%A6%82%E6%9E%9C%E4%BC%A0%E9%80%92%E4%B8%80%E4%B8%AA%E5%A4%8D%E6%9D%82%E7%9A%84%E5%AF%B9%E8%B1%A1%EF%BC%8C%E4%BE%8B%E5%A6%82%E4%B8%80%E4%B8%AA%E5%A4%8D%E6%9D%82%E7%9A%84%E6%8E%A7%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="nav-number">2.1.26.</span> <span class="nav-text">26.Activity使用Intent传递数据是否有限制 &amp; 如果传递一个复杂的对象，例如一个复杂的控件对象应该怎么做？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E5%9C%A8Activity%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%A4%9A%E6%AC%A1%E8%B0%83%E7%94%A8setContentView%E6%96%B9%E6%B3%95%E5%90%97%EF%BC%9F%E8%AF%B4%E8%AF%B4%E4%B8%8D%E5%90%8C%E6%97%B6%E6%9C%BA%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%B0%83%E7%94%A8setContentView%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.1.27.</span> <span class="nav-text">27.在Activity中可以多次调用setContentView方法吗？说说不同时机第二次调用setContentView会发生什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-%E8%AF%B4%E8%AF%B4%E5%88%86%E5%88%AB%E5%9C%A8Activity%E9%87%8C%E6%AF%8F%E4%B8%80%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E9%87%8C%E8%B0%83%E7%94%A8finish%E6%96%B9%E6%B3%95%E5%90%8E%EF%BC%8C%E6%8E%A5%E4%B8%8B%E6%9D%A5Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A6%82%E4%BD%95%E5%9B%9E%E8%B0%83%EF%BC%9F"><span class="nav-number">2.1.28.</span> <span class="nav-text">28.说说分别在Activity里每一个生命周期函数里调用finish方法后，接下来Activity的生命周期如何回调？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-%E6%9C%89%E4%BB%80%E4%B9%88%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E6%B2%A1%E6%9C%89%E5%9C%A8AndroidManifest-xml%E4%B8%AD%E6%B3%A8%E5%86%8C%E8%BF%87%E7%9A%84Activity"><span class="nav-number">2.1.29.</span> <span class="nav-text">29.有什么方法可以启动一个没有在AndroidManifest.xml中注册过的Activity?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E5%9C%A8Activity%E8%BF%9B%E8%A1%8C%E9%85%8D%E7%BD%AE%E6%97%B6%EF%BC%8Ccatrgory%E5%92%8Caction%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.1.30.</span> <span class="nav-text">30.在Activity进行配置时，catrgory和action的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-activity%E4%B8%AD%E5%88%86%E5%88%AB%E5%9C%A8onCreate%EF%BC%8ConStart%EF%BC%8ConResume%E4%B8%AD%E8%B0%83%E7%94%A8finish%E5%90%8E%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%A6%82%E4%BD%95%E5%9B%9E%E8%B0%83%EF%BC%9F"><span class="nav-number">2.1.31.</span> <span class="nav-text">31.activity中分别在onCreate，onStart，onResume中调用finish后的生命周期如何回调？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E9%94%81%E5%AE%9A%E5%B1%8F%E4%B8%8E%E8%A7%A3%E9%94%81%E5%B1%8F%E5%B9%95%EF%BC%8CActivity-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%9F"><span class="nav-number">2.1.32.</span> <span class="nav-text">32.锁定屏与解锁屏幕，Activity 生命周期？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AEActivity%E8%BF%9B%E5%85%A5%E5%92%8C%E9%80%80%E5%87%BA%E7%9A%84%E5%8A%A8%E7%94%BB%EF%BC%9F"><span class="nav-number">2.1.33.</span> <span class="nav-text">33.如何设置Activity进入和退出的动画？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9Activity%E4%B8%ADonNewIntent-%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%A4%E8%AF%86%EF%BC%9F"><span class="nav-number">2.1.34.</span> <span class="nav-text">34.谈谈你对Activity中onNewIntent()方法的认识？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35-%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AAActivity%E5%90%AF%E5%8A%A8%E6%AF%94%E8%BE%83%E6%85%A2%EF%BC%8C%E9%9C%80%E8%A6%81%E4%BC%98%E5%8C%96%EF%BC%8C%E4%BD%A0%E8%A7%89%E5%BE%97%E5%8F%AF%E4%BB%A5%E4%BB%8E%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E5%85%A5%E6%89%8B%EF%BC%9F"><span class="nav-number">2.1.35.</span> <span class="nav-text">35.如果一个Activity启动比较慢，需要优化，你觉得可以从哪些方面入手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#36-Activity%E4%B9%8B%E9%97%B4%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E5%BC%8FIntent%E6%98%AF%E5%90%A6%E6%9C%89%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BC%A0%E9%80%92%E7%9A%84%E6%95%B0%E6%8D%AE%E9%87%8F%E5%81%8F%E5%A4%A7%EF%BC%8C%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="nav-number">2.1.36.</span> <span class="nav-text">36.Activity之间传递数据的方式Intent是否有大小限制，如果传递的数据量偏大，有哪些方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#37-%E4%BA%86%E8%A7%A3scheme%E8%B7%B3%E8%BD%AC%E5%8D%8F%E8%AE%AE%E5%90%97%EF%BC%9F%E8%B0%88%E4%B8%80%E8%B0%88"><span class="nav-number">2.1.37.</span> <span class="nav-text">37.了解scheme跳转协议吗？谈一谈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#38-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9Activity%E7%9A%84Context%E7%9A%84%E8%AE%A4%E8%AF%86%EF%BC%9F"><span class="nav-number">2.1.38.</span> <span class="nav-text">38.谈谈你对Activity的Context的认识？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#39-%E5%A6%82%E4%BD%95%E5%9C%A8Application%E4%B8%AD%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8DActivity%E5%AE%9E%E4%BE%8B%EF%BC%9F"><span class="nav-number">2.1.39.</span> <span class="nav-text">39.如何在Application中获取当前Activity实例？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#40-Activity%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%9F"><span class="nav-number">2.1.40.</span> <span class="nav-text">40.Activity进程优先级？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#41-Activity%E5%87%BA%E7%8E%B0ANR%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%9C%89%E5%93%AA%E4%BA%9B-amp-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9F"><span class="nav-number">2.1.41.</span> <span class="nav-text">41.Activity出现ANR的条件有哪些 &amp; 解决方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-Activity%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8A%A0%E8%BD%BD%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E7%9A%84%EF%BC%9F%E4%BB%80%E4%B9%88%E5%BC%80%E5%A7%8B%E8%BF%9B%E8%A1%8CUI%E7%BB%98%E5%88%B6%EF%BC%9F"><span class="nav-number">2.1.42.</span> <span class="nav-text">42.Activity什么时候加载布局文件的？什么开始进行UI绘制？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-BroadcastReceiver"><span class="nav-number">2.2.</span> <span class="nav-text">3.2 BroadcastReceiver</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-ContentProvider"><span class="nav-number">2.2.1.</span> <span class="nav-text">3.3 ContentProvider</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Service"><span class="nav-number">2.2.2.</span> <span class="nav-text">3.4 Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-Handler"><span class="nav-number">2.2.3.</span> <span class="nav-text">3.5 Handler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-AsyncTask"><span class="nav-number">2.2.4.</span> <span class="nav-text">3.6 AsyncTask</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-Fragment"><span class="nav-number">2.2.5.</span> <span class="nav-text">3.7 Fragment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8-%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">2.2.6.</span> <span class="nav-text">3.8 序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-9-IPC"><span class="nav-number">2.2.7.</span> <span class="nav-text">3.9 IPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-10-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8"><span class="nav-number">2.2.8.</span> <span class="nav-text">3.10 文件存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-11-ListView-amp-RecyclerView"><span class="nav-number">2.2.9.</span> <span class="nav-text">3.11 ListView &amp; RecyclerView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-12-%E5%9B%BE%E7%89%87%E7%BC%96%E7%A8%8B"><span class="nav-number">2.2.10.</span> <span class="nav-text">3.12 图片编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-13-WebView"><span class="nav-number">2.2.11.</span> <span class="nav-text">3.13 WebView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-14-ViewPager"><span class="nav-number">2.2.12.</span> <span class="nav-text">3.14 ViewPager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-15-View%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.13.</span> <span class="nav-text">3.15 View事件分发机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-16-View%E7%BB%98%E5%88%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.14.</span> <span class="nav-text">3.16 View绘制机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-17-%E5%B8%83%E5%B1%80"><span class="nav-number">2.2.15.</span> <span class="nav-text">3.17 布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-18-Binder"><span class="nav-number">2.2.16.</span> <span class="nav-text">3.18 Binder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-19-%E5%8A%A8%E7%94%BB%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.17.</span> <span class="nav-text">3.19 动画机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-20-JNI"><span class="nav-number">2.2.18.</span> <span class="nav-text">3.20 JNI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-21-Window-amp-Appliction-amp-Context"><span class="nav-number">2.2.19.</span> <span class="nav-text">3.21 Window &amp; Appliction &amp; Context</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-22-%E9%80%9A%E7%9F%A5"><span class="nav-number">2.2.20.</span> <span class="nav-text">3.22 通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-23-%E5%AF%B9%E8%AF%9D%E6%A1%86-Dialog-amp-DialogFragment-amp-PopWindow"><span class="nav-number">2.2.21.</span> <span class="nav-text">3.23 对话框(Dialog &amp; DialogFragment &amp; PopWindow)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-24-%E8%93%9D%E7%89%99"><span class="nav-number">2.2.22.</span> <span class="nav-text">3.24 蓝牙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-25-%E5%86%B7%E5%90%AF%E5%8A%A8-amp-%E7%83%AD%E5%90%AF%E5%8A%A8"><span class="nav-number">2.2.23.</span> <span class="nav-text">3.25 冷启动&amp;热启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-26-%E6%82%AC%E6%B5%AE%E7%AA%97"><span class="nav-number">2.2.24.</span> <span class="nav-text">3.26 悬浮窗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-27-Android%E7%89%88%E6%9C%AC"><span class="nav-number">2.2.25.</span> <span class="nav-text">3.27 Android版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-28-Android-Studio"><span class="nav-number">2.2.26.</span> <span class="nav-text">3.28 Android Studio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-29-UI%E5%8D%A1%E9%A1%BF%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.27.</span> <span class="nav-text">3.29 UI卡顿优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-30-%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.28.</span> <span class="nav-text">3.30 内存优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-31-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D"><span class="nav-number">2.2.29.</span> <span class="nav-text">3.31 屏幕适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-32-%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85-amp-apk%E7%AD%BE%E5%90%8D"><span class="nav-number">2.2.30.</span> <span class="nav-text">3.32 多渠道打包 &amp; apk签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-33-%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.31.</span> <span class="nav-text">3.33 项目架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-34-Android%E5%89%8D%E6%B2%BF%E7%9F%A5%E8%AF%86"><span class="nav-number">2.2.32.</span> <span class="nav-text">3.34 Android前沿知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-35-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%91-%E9%AB%98%E8%96%AA"><span class="nav-number">2.2.33.</span> <span class="nav-text">3.35 音视频开发(高薪)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-36-%E7%83%AD%E4%BF%AE%E5%A4%8D-amp-%E6%8F%92%E4%BB%B6%E5%8C%96"><span class="nav-number">2.2.34.</span> <span class="nav-text">3.36 热修复 &amp; 插件化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-37-%E5%85%B6%E5%AE%83Android%E9%83%A8%E5%88%86%E6%9C%89%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">2.2.35.</span> <span class="nav-text">3.37 其它Android部分有关面试题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-38-%E7%BB%8F%E9%AA%8C%E7%9B%B8%E5%85%B3%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">2.2.36.</span> <span class="nav-text">3.38 经验相关面试题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-39-%E5%AE%89%E5%85%A8-amp-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">2.2.37.</span> <span class="nav-text">3.39 安全 &amp; 性能优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-40-Gradle"><span class="nav-number">2.2.38.</span> <span class="nav-text">3.40 Gradle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%A7%BB%E5%8A%A8UI%E6%A1%86%E6%9E%B6%E9%83%A8%E5%88%86-Flutter%E4%B8%BA%E4%B8%BB"><span class="nav-number">2.3.</span> <span class="nav-text">4.移动UI框架部分(Flutter为主)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E9%83%A8%E5%88%86"><span class="nav-number">2.4.</span> <span class="nav-text">5.算法与数据结构部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.4.1.</span> <span class="nav-text">5.1 复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%95%B0%E7%BB%84"><span class="nav-number">2.4.2.</span> <span class="nav-text">5.2 数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E9%93%BE%E8%A1%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">5.3 链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E5%A0%86"><span class="nav-number">2.4.4.</span> <span class="nav-text">5.4 堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-%E6%A0%88"><span class="nav-number">2.4.5.</span> <span class="nav-text">5.5 栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-%E9%98%9F%E5%88%97"><span class="nav-number">2.4.6.</span> <span class="nav-text">5.6 队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-%E6%95%A3%E5%88%97%E8%A1%A8"><span class="nav-number">2.4.7.</span> <span class="nav-text">5.7 散列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-8-%E6%A0%91"><span class="nav-number">2.4.8.</span> <span class="nav-text">5.8 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-9-%E6%8E%92%E5%BA%8F"><span class="nav-number">2.4.9.</span> <span class="nav-text">5.9 排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-10-%E6%9F%A5%E6%89%BE"><span class="nav-number">2.4.10.</span> <span class="nav-text">5.10 查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-11-%E9%80%92%E5%BD%92-amp-%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.11.</span> <span class="nav-text">5.11 递归&amp;回溯算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-12-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.12.</span> <span class="nav-text">5.12 贪心算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-13-%E5%85%B6%E5%AE%83%E6%9C%89%E5%85%B3%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">2.4.13.</span> <span class="nav-text">5.13 其它有关算法与数据结构的面试题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BC%80%E6%BA%90%E5%BA%93%E9%83%A8%E5%88%86"><span class="nav-number">2.5.</span> <span class="nav-text">6.常用的开源库部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="nav-number">2.5.1.</span> <span class="nav-text">6.1 异步通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E7%BD%91%E7%BB%9C"><span class="nav-number">2.5.2.</span> <span class="nav-text">6.2 网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="nav-number">2.5.3.</span> <span class="nav-text">6.3 依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.5.4.</span> <span class="nav-text">6.4 图片加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.5.5.</span> <span class="nav-text">6.5 数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-%E5%85%B6%E5%AE%83"><span class="nav-number">2.5.6.</span> <span class="nav-text">6.6 其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%83%A8%E5%88%86"><span class="nav-number">2.6.</span> <span class="nav-text">7.计算机网络部分</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="大给给"
+      src="/images/IMG_0504.JPG">
+  <p class="site-author-name" itemprop="name">大给给</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">大给给</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'r9CGeC4qgJaFo7Fb0vy3z592-gzGzoHsz',
+      appKey     : 'lRIC2lFoNyHc2DxcMJROvS4i',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
